@@ -1,0 +1,5 @@
+---
+title: "About"
+---
+
+This site hosts projects completed by Reagan Tullis for CSCI-4055, Fall 2026. Select a project in the navigation bar to view it.
