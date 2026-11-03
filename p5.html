@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>p5 – numcomp_project_site</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">numcomp_project_site</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./p3.html"> 
+<span class="menu-text">Project 3</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./p5.html" aria-current="page"> 
+<span class="menu-text">Project 5</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link active" data-scroll-target="#analysis">Analysis</a>
+  <ul class="collapse">
+  <li><a href="#maclaurin-polynomial" id="toc-maclaurin-polynomial" class="nav-link" data-scroll-target="#maclaurin-polynomial">Maclaurin Polynomial</a></li>
+  <li><a href="#taylor-polynomial" id="toc-taylor-polynomial" class="nav-link" data-scroll-target="#taylor-polynomial">Taylor Polynomial</a></li>
+  <li><a href="#lagrange-polynomial" id="toc-lagrange-polynomial" class="nav-link" data-scroll-target="#lagrange-polynomial">Lagrange Polynomial</a></li>
+  <li><a href="#performance-prediction" id="toc-performance-prediction" class="nav-link" data-scroll-target="#performance-prediction">Performance Prediction</a></li>
+  </ul></li>
+  <li><a href="#computer-program" id="toc-computer-program" class="nav-link" data-scroll-target="#computer-program">Computer Program</a>
+  <ul class="collapse">
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#computation" id="toc-computation" class="nav-link" data-scroll-target="#computation">Computation</a></li>
+  </ul></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a>
+  <ul class="collapse">
+  <li><a href="#challenge---what-degree-taylor-polynomial-outperforms-l_3x" id="toc-challenge---what-degree-taylor-polynomial-outperforms-l_3x" class="nav-link" data-scroll-target="#challenge---what-degree-taylor-polynomial-outperforms-l_3x">Challenge - what degree Taylor Polynomial outperforms <span class="math inline">\(L_3(x)\)</span>?</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Introduction</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In this project, we will use a Maclaurin Polynomial, a Taylor Polynomial, and a Lagrange Polynomial to approximate <span class="math inline">\(f(x) = e^{x}\)</span> on <span class="math inline">\([0,2]\)</span>, and compare the performance of these approximations based on their absolute error over the interval. We will begin with a by-hand construction of the polynomials accompanied by interpolation testing and the construction of error bounds, then create a Python program to compute polynomials that we can test against our own work and existing implementations.</p>
+<section id="analysis" class="level2">
+<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
+<p>We will begin with a by-hand construction of 3rd degree Maclaurin and Taylor Polynomials for <span class="math inline">\(f(x) = e^{x}\)</span>.</p>
+<section id="maclaurin-polynomial" class="level3">
+<h3 class="anchored" data-anchor-id="maclaurin-polynomial">Maclaurin Polynomial</h3>
+<p>To begin, we will create a 3rd degree Maclaurin Polynomial for <span class="math inline">\(f(x) = e^{x}\)</span>, <span class="math inline">\(M_3(x)\)</span>. Since this will be a 3rd degree Taylor Polynomial, we will need to find the first 4 derivatives of <span class="math inline">\(f(x)\)</span> - the 4th derivative will be used to find <span class="math inline">\(R_3(x)\)</span>. Since <span class="math inline">\(f(x) = e^x\)</span>, <span class="math inline">\(f'(x) = e^x = f(x)\)</span>. So:</p>
+<p><span class="math inline">\(f(x) = f'(x) = f''(x) = f'''(x) = f^{(4)}(x) = e^x\)</span></p>
+<p>From here, we can construct <span class="math inline">\(M_3(x)\)</span> using Taylor’s Theorem with <span class="math inline">\(x_0 = 0\)</span>. Taylor’s theorem states that, for a function <span class="math inline">\(f(x)\)</span> with <span class="math inline">\(n + 1\)</span> derivatives (where <span class="math inline">\(n\)</span> is an integer, <span class="math inline">\(n ≥ 0\)</span>) on an interval <span class="math inline">\((a, b)\)</span> and a point <span class="math inline">\(x_0 ∈ (a, b)\)</span>, <span class="math inline">\(f(x)\)</span> can be approximated on <span class="math inline">\((a, b)\)</span> by</p>
+<p><span class="math inline">\(f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(x_0)}{k!}(x-x_0)^k + R_n(x)\)</span></p>
+<p>where <span class="math inline">\(R_n(x) = \frac{f^{(n+1)}(ξ_x)}{(n+1)!}(x-x_0)^{n+1}\)</span>, and <span class="math inline">\(ξ_x ∈ (x, x_0)\)</span></p>
+<p>Using the derivatives calculated above and Taylor’s Theorem, we can construct <span class="math inline">\(M_3(x)\)</span> as follows:</p>
+<p><span class="math inline">\(M_3(x) = f(0)+f^{(1)}(0)(x-0)+ \frac{f^{(2)}(0)}{2!}(x-0)^2+\frac{f^{(3)}(0)}{3!}(x-0)^3\)</span><br>
+<span class="math inline">\(M_3(x) = e^0+e^0(x-0)+ \frac{e^0}{2!}(x-0)^2+\frac{e^0}{3!}(x-0)^3\)</span> <span class="math inline">\(M_3(x) = 1+x+\frac{1}{2}(x)^2+\frac{1}{6}(x)^3\)</span></p>
+<p>Here, <span class="math inline">\(R_3(x) = \frac{e^{\xi_x}}{(4)!}(x)^{4}\)</span>, with <span class="math inline">\(ξ_x ∈ (x, 0)\)</span></p>
+<section id="interpolation-test" class="level4">
+<h4 class="anchored" data-anchor-id="interpolation-test">Interpolation Test</h4>
+<p>We know that Taylor (and Maclaurin) Polynomials are interpolating; that is, if <span class="math inline">\(f(a)=b\)</span> then <span class="math inline">\(T_n(a)=b\)</span>. Using this fact, we can verify that our <span class="math inline">\(M_3(x)\)</span> is correct by testing using our known <span class="math inline">\(x_0\)</span>, <span class="math inline">\(0\)</span>.</p>
+<p><span class="math inline">\(f(0) = e^{0} = 1\)</span>.<br>
+<span class="math inline">\(M_3(0) = 1+(0)+\frac{1}{2}(0)^2+\frac{1}{6}(0)^3 = 1\)</span></p>
+<p>Since <span class="math inline">\(f(0)=M_3(0)\)</span>, we can verify <span class="math inline">\(M_3(x)\)</span> was correctly constructed.</p>
+</section>
+<section id="error-bound" class="level4">
+<h4 class="anchored" data-anchor-id="error-bound">Error Bound</h4>
+<p>We can construct an error bound for <span class="math inline">\(M_3(x)\)</span> by examining <span class="math inline">\(|R_3(x)|\)</span>, the absolute error of <span class="math inline">\(M_3(x)\)</span>.<br>
+<span class="math inline">\(|R_3(x)| = |\frac{e^{\xi}}{(4)!}(x)^{4}|\)</span>.<br>
+Apart from <span class="math inline">\(x\)</span>, the term that will bound <span class="math inline">\(|R_3(x)|\)</span> is <span class="math inline">\(e^{ξ_x}\)</span>. According to Taylor’s Theorem, <span class="math inline">\(ξ_x ∈ (x_0,x)\)</span>, so <span class="math inline">\(ξ_x ∈ (0,2)\)</span> since we are interested in approximating <span class="math inline">\(f(x)\)</span> within <span class="math inline">\([0,2]\)</span>. Because the function <span class="math inline">\(e^{ξ_x}\)</span> is monotonically increasing, its largest value on the interval <span class="math inline">\([0,2]\)</span> will occur at the right endpoint of that interval, at <span class="math inline">\(\xi_x = 2\)</span>.</p>
+<p>So the error bound becomes:</p>
+<p><span class="math inline">\(|R_3(x)| \le \frac{e^{2}(x)^4}{4!} = \frac{e^{2}(x)^4}{24}\)</span> #### Error Bound Test</p>
+<p>We will test this error bound for our approximation for <span class="math inline">\(x=1\)</span>. For <span class="math inline">\(x=1\)</span>, our error bound becomes <span class="math inline">\(\frac{e^{2}(1)^4}{24} \approx 0.3078\)</span>. Using Desmos, we can find that <span class="math inline">\(f(1) \approx 2.7183\)</span> and <span class="math inline">\(M_3(1) \approx 2.6667\)</span>, giving us the absolute error <span class="math inline">\(0.0516\)</span>. <span class="math inline">\(0.0516 &lt; 0.3078\)</span>, so we are well within our error bound.</p>
+</section>
+</section>
+<section id="taylor-polynomial" class="level3">
+<h3 class="anchored" data-anchor-id="taylor-polynomial">Taylor Polynomial</h3>
+<p>We will repeat the above process with <span class="math inline">\(x_0 = 2\)</span> to construct <span class="math inline">\(T_3(x)\)</span>. Using Taylor’s Theorem and the same derivatives as before:</p>
+<p><span class="math inline">\(T_3(x) = f(2)+f^{(1)}(2)(x-2)+ \frac{f^{(2)}(2)}{2!}(x-2)^2+\frac{f^{(3)}(2)}{3!}(x-2)^3\)</span><br>
+<span class="math inline">\(T_3(x) = e^2+e^2(x-2)+ \frac{e^2}{2!}(x-2)^2+\frac{e^2}{3!}(x-2)^3\)</span></p>
+<p>Here, <span class="math inline">\(R_3(x) = \frac{e^{\xi_x}}{(4)!}(x-2)^{4}\)</span>, with <span class="math inline">\(ξ_x ∈ (x, 2)\)</span></p>
+<section id="interpolation-test-1" class="level4">
+<h4 class="anchored" data-anchor-id="interpolation-test-1">Interpolation Test</h4>
+<p>As explained previously, we should be able to get every known value of <span class="math inline">\(f(x)\)</span> out of <span class="math inline">\(T_3(x)\)</span>. We will test this with our known <span class="math inline">\(x_0\)</span> value of <span class="math inline">\(2\)</span>.</p>
+<p><span class="math inline">\(f(2) = e^{2}\)</span></p>
+<p><span class="math inline">\(T_3(2) = e^2+e^2(2-2)+ \frac{e^2}{2!}(2-2)^2+\frac{e^2}{3!}(2-2)^3\)</span><br>
+<span class="math inline">\(T_3(2) = e^{2} + 0 + 0 + 0\)</span><br>
+<span class="math inline">\(T_3(2) = e^{2}\)</span></p>
+<p>Since <span class="math inline">\(f(2)=T_3(2)\)</span>, we can verify <span class="math inline">\(T_3(x)\)</span> was correctly constructed.</p>
+</section>
+<section id="error-bound-1" class="level4">
+<h4 class="anchored" data-anchor-id="error-bound-1">Error Bound</h4>
+<p>Constructing an error bound for <span class="math inline">\(T_3(x)\)</span> is similar to the process used to construct one for <span class="math inline">\(M_3(x)\)</span>. The absolute error <span class="math inline">\(|R_3(x)| = |\frac{e^{\xi}}{(4)!}(x-2)^{4}|\)</span>. As before, <span class="math inline">\(e^{ξ_x}\)</span> is the main component other than <span class="math inline">\((x-2)^4\)</span> that will bound the error function. Based on our previous calculations, we can surmise that this <span class="math inline">\(|R_3(x)|\)</span> will also attain its maximum value when <span class="math inline">\(ξ_x = 2\)</span>. So, the error bound becomes:</p>
+<p><span class="math inline">\(|R_3(x)| \le \frac{e^{2}(x-2)^4}{4!} = \frac{e^{2}(x-2)^4}{24}\)</span></p>
+</section>
+<section id="error-bound-test" class="level4">
+<h4 class="anchored" data-anchor-id="error-bound-test">Error Bound Test</h4>
+<p>As above, we will test this error bound for our approximation for <span class="math inline">\(x=1\)</span>. For <span class="math inline">\(x=1\)</span>, our error bound becomes <span class="math inline">\(\frac{e^{2}(1-2)^4}{24} \approx 0.3078\)</span>. Using Desmos, we can find that <span class="math inline">\(f(1) \approx 2.7183\)</span> and <span class="math inline">\(T_3(1) \approx 2.4630\)</span>, giving us the absolute error <span class="math inline">\(|R_3(1)| \approx 0.2552\)</span>. <span class="math inline">\(0.2552 &lt; 0.3078\)</span>, so again, we are well within our error bound.</p>
+</section>
+</section>
+<section id="lagrange-polynomial" class="level3">
+<h3 class="anchored" data-anchor-id="lagrange-polynomial">Lagrange Polynomial</h3>
+<p>Lastly, we will approximate <span class="math inline">\(f(x)\)</span> using the divided difference form of a Lagrange Polynomial. For a 3rd degree Lagrange Polynomial:</p>
+<p><span class="math inline">\(f(x) = f[x_0] + f[x_0, x_1](x-x_0) + f[x_0, x_1, x_2](x-x_0)(x-x_1) + f[x_0, x_1, x_2, x_3](x-x_0)(x-x_1)(x-x_2) + R_3(\xi_x)\)</span></p>
+<p>where <span class="math inline">\(R_3(\xi_x) = \frac{f^{(4)}(\xi_x)}{4!}(x-x_0)(x-x_1)(x-x_2)(x-x_3)\)</span>, and <span class="math inline">\(\xi_x \in (x_0, x_1, x_2, x_3, x)\)</span>.</p>
+<p>Here, <span class="math inline">\(f[x_0, ..., x_n]\)</span> indicates the <span class="math inline">\(n\)</span>th divided difference. The table below shows the divided differences for <span class="math inline">\(f(x) = e^x\)</span>, given <span class="math inline">\(x_0 = 0\)</span>, <span class="math inline">\(x_1 = 1\)</span>, <span class="math inline">\(x_2 = 1.5\)</span>, <span class="math inline">\(x_3 = 2\)</span>, as calculated on Desmos.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 13%">
+<col style="width: 19%">
+<col style="width: 26%">
+<col style="width: 32%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(x_i\)</span></th>
+<th><span class="math inline">\(f[x_0]\)</span></th>
+<th><span class="math inline">\(f[x_0,x_1]\)</span></th>
+<th><span class="math inline">\(f[x_0,x_1,x_2]\)</span></th>
+<th><span class="math inline">\(f[x_0,x_1,x_2,x_3]\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.0</td>
+<td>1.0000</td>
+<td>1.7183</td>
+<td>1.2057</td>
+<td>0.5411</td>
+</tr>
+<tr class="even">
+<td>1.0</td>
+<td>2.7183</td>
+<td>3.5268</td>
+<td>2.2879</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>1.5</td>
+<td>4.4817</td>
+<td>5.8147</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>2.0</td>
+<td>7.3891</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Using these to construct <span class="math inline">\(L_3(x)\)</span>:</p>
+<p><span class="math inline">\(L_3(x) = 1 + 1.7183(x-0) + 1.2057(x-0)(x-1) + 0.5411(x-0)(x-1)(x-1.5)\)</span></p>
+<p>Here, <span class="math inline">\(R_3(\xi_x) = \frac{e^{\xi_x}}{4!}(x-0)(x-1)(x-1.5)(x-2)\)</span>, with <span class="math inline">\(\xi_x \in (0, 2, x)\)</span></p>
+<section id="interpolation-test-2" class="level4">
+<h4 class="anchored" data-anchor-id="interpolation-test-2">Interpolation Test</h4>
+<p>Since Lagrange Polynomials are interpolating, we expect <span class="math inline">\(L_3(x_n) = f(x_n)\)</span> for all <span class="math inline">\(x_n\)</span> used to construct <span class="math inline">\(L_3(x)\)</span>.</p>
+<p>For <span class="math inline">\(x=x_0=0\)</span>:</p>
+<p><span class="math inline">\(f(0) = e^0 = 1\)</span></p>
+<p><span class="math inline">\(L_3(0) = 1 + 1.7183(0) + 1.2057(0)(1) + 0.5411(0)(-1)(-1.5)\)</span><br>
+<span class="math inline">\(L_3(0) = 1 + 0 + 0 + 0\)</span><br>
+<span class="math inline">\(L_3(0) = 1\)</span></p>
+<p>For <span class="math inline">\(x = x_1 = 1\)</span>:</p>
+<p><span class="math inline">\(f(1) = e^1 = e \approx 2.7183\)</span></p>
+<p><span class="math inline">\(L_3(1) = 1 + 1.7183(1) + 1.2057(1)(0) + 0.5411(1)(0)(-0.5)\)</span><br>
+<span class="math inline">\(L_3(1) = 1 + 1.7183 + 0 + 0\)</span><br>
+<span class="math inline">\(L_3(1) = 2.7183\)</span></p>
+<p>For <span class="math inline">\(x = x_2 = 1.5\)</span>:</p>
+<p><span class="math inline">\(f(1.5) = e^1.5 \approx 4.4817\)</span></p>
+<p><span class="math inline">\(L_3(1.5) = 1 + 1.7183(1.5) + 1.2057(1.5)(0.5) + 0.5411(1.5)(0.5)(0)\)</span><br>
+<span class="math inline">\(L_3(1.5) = 4.4817 + 0\)</span><br>
+<span class="math inline">\(L_3(1.5) = 4.4817\)</span></p>
+<p>For <span class="math inline">\(x=x_3=2\)</span>:</p>
+<p><span class="math inline">\(f(2) = e^2 \approx 7.3891\)</span></p>
+<p><span class="math inline">\(L_3(2) = 1 + 1.7183(2) + 1.2057(2)(1) + 0.5411(2)(1)(0.5)\)</span> <span class="math inline">\(L_3(2) = 7.3891\)</span></p>
+<p>Since <span class="math inline">\(L_3(x_n) = f(x_n)\)</span> for all <span class="math inline">\(x_n\)</span> used to create <span class="math inline">\(L_3(x)\)</span>, <span class="math inline">\(L_3(x)\)</span> interpolates as expected and thus was likely constructed correctly.</p>
+</section>
+<section id="error-bound-2" class="level4">
+<h4 class="anchored" data-anchor-id="error-bound-2">Error Bound</h4>
+<p>Our error formula for this Lagrange Polynomial is <span class="math inline">\(R_3(\xi_x) = \frac{e^{\xi_x}}{4!}(x-0)(x-1)(x-1.5)(x-2)\)</span>, with <span class="math inline">\(\xi_x \in (0, 2, x)\)</span>.</p>
+<p>Just like with the Maclaurin and Taylor polynomials, the term we need to focus on to find the error bound is <span class="math inline">\(e^{\xi_x}\)</span>. Since we are still interested in approximating <span class="math inline">\(f(x)\)</span> over <span class="math inline">\([0, 2]\)</span>, and since <span class="math inline">\(e^{\xi_x}\)</span> is monotonically increasing, the maximum absolute value of <span class="math inline">\(e^{\xi_x}\)</span> occurs at <span class="math inline">\(\xi_x = 2\)</span>. So our error bound becomes:</p>
+<p><span class="math inline">\(|R_3(\xi_x)| \le |\frac{e^{2}}{4!}(x-0)(x-1)(x-1.5)(x-2)|\)</span> <span class="math inline">\(|R_3(\xi_x)| \le |\frac{e^{2}}{24}(x-0)(x-1)(x-1.5)(x-2)|\)</span></p>
+</section>
+<section id="error-bound-test-1" class="level4">
+<h4 class="anchored" data-anchor-id="error-bound-test-1">Error Bound Test</h4>
+<p>This time, we will test this error bound for our approximation for <span class="math inline">\(x=0.5\)</span>, since that is not a point of interpolation. For <span class="math inline">\(x=0.5\)</span>, our error bound becomes <span class="math inline">\(|\frac{e^{2}}{24}(0.5-0)(0.5-1)(0.5-1.5)(0.5-2)| \approx 0.1154\)</span>. Using Desmos, we can find that <span class="math inline">\(f(0.5) \approx 1.6487\)</span> and <span class="math inline">\(L_3(0.5) \approx 1.693\)</span>, giving us the absolute error <span class="math inline">\(|R_3(0.5)| \approx 0.0442\)</span>. <span class="math inline">\(0.0442 &lt; 0.1154\)</span>, so we are well within our error bound once more.</p>
+</section>
+</section>
+<section id="performance-prediction" class="level3">
+<h3 class="anchored" data-anchor-id="performance-prediction">Performance Prediction</h3>
+<p>All three of <span class="math inline">\(M_3(x)\)</span>, <span class="math inline">\(T_3(x)\)</span>, and <span class="math inline">\(L_3(x)\)</span> have similar error bounds in that they all contain an <span class="math inline">\(x^4\)</span> term as their fastest-growing term. Their main differentiator is where their interpolating points are, and how many of them there are. $M_3(x) is anchored at <span class="math inline">\(x=0\)</span> on the left of the interval, and <span class="math inline">\(T_3(x)\)</span> is anchored at <span class="math inline">\(x=2\)</span> on the right. <span class="math inline">\(L_3(x)\)</span> on the other hand interpolates <span class="math inline">\(x=0,1,1.5,2\)</span>. Because of that, I expect <span class="math inline">\(L_3(x)\)</span> to be the best overall estimator of <span class="math inline">\(f(x)\)</span> over <span class="math inline">\([0,2]\)</span>, as it uses information from across the interval rather than only one side of it.</p>
+</section>
+</section>
+<section id="computer-program" class="level2">
+<h2 class="anchored" data-anchor-id="computer-program">Computer Program</h2>
+<section id="setup" class="level3">
+<h3 class="anchored" data-anchor-id="setup">Setup</h3>
+<div id="e8a8363f" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tabulate <span class="im">import</span> tabulate</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>For the computer program portion of this project, we will first borrow some code for computing Taylor Polynomials and evaluating expressions from a previous project.</p>
+<div id="83e8e96e" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> doTaylor(func, symb, deg, x0):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">    A function to generate a Taylor Polynomial with a specified degree and x0. Takes a symbolic expression func, symbol symb, integer degree deg, and number x0 as input. Returns a symbolic expression.</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    taylor <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(deg<span class="op">+</span><span class="dv">1</span>):</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        taylor <span class="op">+=</span> (sp.diff(func, symb, n).subs(symb, x0)<span class="op">*</span>(symb<span class="op">-</span>x0)<span class="op">**</span>n)<span class="op">/</span>sp.factorial(n)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> taylor</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> evalExpression(f, symb, input_vals):</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">    Evaluates the provided single-variable expression for a list of input values. Takes a symbolic expression f, symbol sym, and array-like input_vals as input. Returns a list of the output values.</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [f.subs(symb, val) <span class="cf">for</span> val <span class="kw">in</span> input_vals]</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> getErrors(f_actual, f_estimate, symb, input_vals):</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">    Finds the error between a provided symbolic expression and a provided estimated symbolic expression. Takes the true symbolic expression f_actual, the estimated symbolic expression f_estimate, the symbol symb, and array-like input_vals as input. Returns a 1D array of errors.</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    true_vals <span class="op">=</span> np.array(evalExpression(f_actual, symb, input_vals))</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    est_vals <span class="op">=</span> np.array(evalExpression(f_estimate, symb, input_vals))</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> true_vals <span class="op">-</span> est_vals</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Next, we will create a function to generate Lagrange Polynomials using divided differences. First, the function to compute the divided differences recursively:</p>
+<div id="a05ae356" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> divided_diff(vals, x0, depth<span class="op">=</span><span class="dv">1</span>): <span class="co"># x0 == the index of x0</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">    A function to compute the divided difference of a set of points recursively. Takes a list of tuples vals = (x, f(x)), an integer x0 (representing the index of x0), and an integer depth as input. Returns the divided difference as a float.</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># first, check that the divided difference of the requested depth exists given the provided vals and x0</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> depth <span class="op">&gt;=</span> <span class="bu">len</span>(vals)<span class="op">-</span>x0:</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Depth exceeds the maximum possible divided difference for this x0!"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># base case: if depth == 0, return f(x0)</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> depth <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        dd <span class="op">=</span> vals[x0][<span class="dv">1</span>]</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># recursive case: if depth &gt; 0, return the divided difference of the previous depth</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        dd <span class="op">=</span> (divided_diff(vals, x0<span class="op">+</span><span class="dv">1</span>, depth<span class="op">=</span>depth<span class="op">-</span><span class="dv">1</span>) <span class="op">-</span> divided_diff(vals, x0, depth<span class="op">=</span>depth<span class="op">-</span><span class="dv">1</span>)) <span class="op">/</span> (vals[x0<span class="op">+</span>depth][<span class="dv">0</span>] <span class="op">-</span> vals[x0][<span class="dv">0</span>])</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Next, we will create a function to generate Lagrange Polynomials using the divided differences computed above.</p>
+<div id="a90246ee" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> doLagrange(func, symb, deg, points):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">    A function to generate a Lagrange Polynomial with a specified degree and interpolation points. Takes a symbolic expression func, symbol symb, integer degree deg, and list of x values to interpolate as input. Returns a symbolic expression.</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># first, check that the inputs are valid</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(deg, <span class="bu">int</span>) <span class="kw">or</span> deg <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"deg must be a nonnegative integer."</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(points) <span class="op">!=</span> deg <span class="op">+</span> <span class="dv">1</span>:</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"The number of interpolation points must be deg + 1."</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(<span class="bu">set</span>(points)) <span class="op">!=</span> <span class="bu">len</span>(points):</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Interpolation points must be distinct."</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># create the table of values (x, f(x)) for the interpolation points</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    vals <span class="op">=</span> [(x_n, func.subs(symb, x_n)) <span class="cf">for</span> x_n <span class="kw">in</span> points]</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># initialize the Lagrange Polynomial to 0</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    lagrange <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># use range(deg+1) since Python indexing starts at 0, and we want to include the deg-th term</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(deg <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute the divided difference for the current term</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        dd <span class="op">=</span> divided_diff(vals, <span class="dv">0</span>, i)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute the product term for the current term</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>        <span class="co"># use list comprehension to create a list of (x - x_n) terms for the product, then use sp.Mul to multiply them together</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        prod_term <span class="op">=</span> sp.Mul(<span class="op">*</span>[(symb <span class="op">-</span> vals[x_n][<span class="dv">0</span>]) <span class="cf">for</span> x_n <span class="kw">in</span> <span class="bu">range</span>(i)])</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        <span class="co"># add the current term to the Lagrange Polynomial</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>        lagrange <span class="op">+=</span> dd<span class="op">*</span>prod_term</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># return the completed Lagrange Polynomial after the loop ends</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lagrange</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="computation" class="level3">
+<h3 class="anchored" data-anchor-id="computation">Computation</h3>
+<p>Now that we’ve defined the functions to compute Taylor and Lagrange Polynomials, we can use them to compute <span class="math inline">\(M_3(x)\)</span>, <span class="math inline">\(T_3(x)\)</span>, and <span class="math inline">\(L_3(x)\)</span>.</p>
+<div id="a6ddb8ee" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first, define the symbolic variable and the function to approximate</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> sp.symbols(<span class="st">"x"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> sp.exp(x)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the Maclaurin Polynomial, Taylor Polynomial, and Lagrange Polynomial</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>M3 <span class="op">=</span> doTaylor(f, x, <span class="dv">3</span>, <span class="dv">0</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>T3 <span class="op">=</span> doTaylor(f, x, <span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>L3 <span class="op">=</span> doLagrange(f, x, <span class="dv">3</span>, [<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<p>Now that we have generated the polynomials, we can evaluate them and examine their errors at a few interesting <span class="math inline">\(x\)</span> values.</p>
+<div id="11a6b1ef" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># list the key x values we want to evaluate the polynomials at</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>x_values <span class="op">=</span> [<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>, <span class="dv">15</span>]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># evaluate the true function and the polynomials at the key x values</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>f_values <span class="op">=</span> evalExpression(f, x, x_values)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>M3_values <span class="op">=</span> evalExpression(M3, x, x_values)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>T3_values <span class="op">=</span> evalExpression(T3, x, x_values)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>L3_values <span class="op">=</span> evalExpression(L3, x, x_values)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the errors for each polynomial</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>M3_errors <span class="op">=</span> getErrors(f, M3, x, x_values)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>T3_errors <span class="op">=</span> getErrors(f, T3, x, x_values)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>L3_errors <span class="op">=</span> getErrors(f, L3, x, x_values)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># organize the results into a table for display</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> <span class="bu">list</span>(<span class="bu">zip</span>(x_values, f_values, M3_values, T3_values, L3_values, M3_errors, T3_errors, L3_errors))</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate(results, headers<span class="op">=</span>[<span class="st">"x"</span>, <span class="st">"f(x)"</span>, <span class="st">"M3(x)"</span>, <span class="st">"T3(x)"</span>, <span class="st">"L3(x)"</span>, <span class="st">"Error M3"</span>, <span class="st">"Error T3"</span>, <span class="st">"Error L3"</span>], tablefmt<span class="op">=</span><span class="st">"grid"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+-------+-------------+------------+-------------+------------+-------------+--------------+--------------+
+|     x |        f(x) |      M3(x) |       T3(x) |      L3(x) |    Error M3 |     Error T3 |     Error L3 |
++=======+=============+============+=============+============+=============+==============+==============+
+| -1    | 0.367879    |   0.333333 |  -14.7781   |   -1.01248 | 0.0345461   | 15.146       |  1.38036     |
++-------+-------------+------------+-------------+------------+-------------+--------------+--------------+
+|  0    | 1           |   1        |   -2.46302  |    1       | 0           |  3.46302     |  0           |
++-------+-------------+------------+-------------+------------+-------------+--------------+--------------+
+|  0.5  | 1.64872     |   1.64583  |    0.461816 |    1.693   | 0.00288794  |  1.18691     | -0.0442764   |
++-------+-------------+------------+-------------+------------+-------------+--------------+--------------+
+|  0.75 | 2.117       |   2.10156  |    1.52014  |    2.13874 | 0.0154375   |  0.596856    | -0.0217391   |
++-------+-------------+------------+-------------+------------+-------------+--------------+--------------+
+|  1    | 2.71828     |   2.66667  |    2.46302  |    2.71828 | 0.0516152   |  0.255263    |  0           |
++-------+-------------+------------+-------------+------------+-------------+--------------+--------------+
+|  1.5  | 4.48169     |   4.1875   |    4.46422  |    4.48169 | 0.294189    |  0.0174677   |  8.88178e-16 |
++-------+-------------+------------+-------------+------------+-------------+--------------+--------------+
+|  2    | 7.38906     |   6.33333  |    7.38906  |    7.38906 | 1.05572     |  0           |  0           |
++-------+-------------+------------+-------------+------------+-------------+--------------+--------------+
+| 15    | 3.26902e+06 | 691        | 3433.45     | 1814.03    | 3.26833e+06 |  3.26558e+06 |  3.2672e+06  |
++-------+-------------+------------+-------------+------------+-------------+--------------+--------------+</code></pre>
+</div>
+</div>
+<p>All three functions do a decent job of approximating <span class="math inline">\(f(x)\)</span> on <span class="math inline">\([0,2]\)</span>. <span class="math inline">\(L_3(x)\)</span> appears to be the best performer for the in-interval points we’ve tested here, partly because it interpolates most of them. As for the points outside the interval, <span class="math inline">\(T_3(x)\)</span> struggles the most out of the three at <span class="math inline">\(x=-1\)</span>, likely because its only interpolating point exists at <span class="math inline">\(x=2\)</span>, the farthest of all three functions. All three functions have similarly massive absolute errors of comparable magnitude at <span class="math inline">\(x=15\)</span>, far outside the interval. However, due to the rapidly increasing nature of <span class="math inline">\(f(x)\)</span>, the absolute errors are somewhat misleading compared to relative errors for large <span class="math inline">\(x\)</span> values.</p>
+<div id="7ceb6e1b" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the relative errors for each polynomial</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>M3_relative_errors <span class="op">=</span> np.<span class="bu">abs</span>(M3_errors <span class="op">/</span> f_values)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>T3_relative_errors <span class="op">=</span> np.<span class="bu">abs</span>(T3_errors <span class="op">/</span> f_values)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>L3_relative_errors <span class="op">=</span> np.<span class="bu">abs</span>(L3_errors <span class="op">/</span> f_values)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># organize the relative errors into a table for display</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>relative_results <span class="op">=</span> <span class="bu">list</span>(<span class="bu">zip</span>(x_values, M3_relative_errors, T3_relative_errors, L3_relative_errors))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate(relative_results, headers<span class="op">=</span>[<span class="st">"x"</span>, <span class="st">"Relative Error M3"</span>, <span class="st">"Relative Error T3"</span>, <span class="st">"Relative Error L3"</span>], tablefmt<span class="op">=</span><span class="st">"grid"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+-------+---------------------+---------------------+---------------------+
+|     x |   Relative Error M3 |   Relative Error T3 |   Relative Error L3 |
++=======+=====================+=====================+=====================+
+| -1    |          0.0939061  |         41.1711     |         3.75221     |
++-------+---------------------+---------------------+---------------------+
+|  0    |          0          |          3.46302    |         0           |
++-------+---------------------+---------------------+---------------------+
+|  0.5  |          0.00175162 |          0.719894   |         0.026855    |
++-------+---------------------+---------------------+---------------------+
+|  0.75 |          0.00729217 |          0.281935   |         0.0102688   |
++-------+---------------------+---------------------+---------------------+
+|  1    |          0.0189882  |          0.0939061  |         0           |
++-------+---------------------+---------------------+---------------------+
+|  1.5  |          0.0656425  |          0.00389757 |         1.98179e-16 |
++-------+---------------------+---------------------+---------------------+
+|  2    |          0.142877   |          0          |         0           |
++-------+---------------------+---------------------+---------------------+
+| 15    |          0.999789   |          0.99895    |         0.999445    |
++-------+---------------------+---------------------+---------------------+</code></pre>
+</div>
+</div>
+<p>Looking at the relative errors, we can see that, despite having massive absolute errors at <span class="math inline">\(x=15\)</span>, all three functions have relative errors <span class="math inline">\(\approx 1\)</span>, indicating that the errors are about the same size as the actual function value. While this isn’t great, it puts into perspective how meaningful some seemingly small absolute errors can be - <span class="math inline">\(T_3(-1)\)</span>’s absolute error of <span class="math inline">\(15.146\)</span> is more than 41 times the actual function value.</p>
+<p>For a better representation of performance on the intended interval, we can plot all four functions on the same set of axes over <span class="math inline">\([0, 2]\)</span> to visualize their performance.</p>
+<div id="306fd308" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a range of x values for plotting</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>x_plot <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">100</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the true function and the polynomials</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>ax.plot(x_plot, evalExpression(f, x, x_plot), label<span class="op">=</span><span class="st">"f(x)"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>ax.plot(x_plot, evalExpression(M3, x, x_plot), label<span class="op">=</span><span class="st">"M3(x)"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>ax.plot(x_plot, evalExpression(T3, x, x_plot), label<span class="op">=</span><span class="st">"T3(x)"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>ax.plot(x_plot, evalExpression(L3, x, x_plot), label<span class="op">=</span><span class="st">"L3(x)"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"x"</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"y"</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Polynomial Approximation of f(x) = e^x"</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="p5_files/figure-html/cell-9-output-1.png" width="810" height="523" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Looking at the plot, it appears that <span class="math inline">\(M_3(x)\)</span> is very close to <span class="math inline">\(f(x)\)</span> on the left side of the interval, while <span class="math inline">\(T_3(x)\)</span> is very close to <span class="math inline">\(f(x)\)</span> on the right side of the interval. <span class="math inline">\(L_3(x)\)</span> appears to be a good approximation across the entire interval. We can further verify this by plotting the absolute errors of each polynomial over <span class="math inline">\([0, 2]\)</span>.</p>
+<div id="0e13534b" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the absolute errors of each polynomial</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>ax.plot(x_plot, np.<span class="bu">abs</span>(getErrors(f, M3, x, x_plot)), label<span class="op">=</span><span class="st">"Error M3"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>ax.plot(x_plot, np.<span class="bu">abs</span>(getErrors(f, T3, x, x_plot)), label<span class="op">=</span><span class="st">"Error T3"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>ax.plot(x_plot, np.<span class="bu">abs</span>(getErrors(f, L3, x, x_plot)), label<span class="op">=</span><span class="st">"Error L3"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"x"</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Absolute Error"</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Errors in Polynomial Approximations of f(x) = e^x"</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="p5_files/figure-html/cell-10-output-1.png" width="812" height="523" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As we expected from the previous plot, <span class="math inline">\(M_3(x)\)</span> has the smallest error on the left side of the interval, <span class="math inline">\(T_3(x)\)</span> has the smallest error on the right side of the interval, and <span class="math inline">\(L_3(x)\)</span> has a relatively small error across the entire interval. This supports our earlier prediction that <span class="math inline">\(L_3(x)\)</span> would be the best overall estimator of <span class="math inline">\(f(x)\)</span> over <span class="math inline">\([0, 2]\)</span>.</p>
+<p>We can also plot each error against its respective error bound to verify that the errors are within the bounds we calculated earlier.</p>
+<div id="98ec7c0e" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the error bounds for each polynomial</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>M3_bound <span class="op">=</span> sp.Abs(sp.exp(<span class="dv">2</span>)<span class="op">*</span>(x)<span class="op">**</span><span class="dv">4</span><span class="op">/</span><span class="dv">24</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>T3_bound <span class="op">=</span> sp.Abs(sp.exp(<span class="dv">2</span>)<span class="op">*</span>(x<span class="op">-</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">4</span><span class="op">/</span><span class="dv">24</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>L3_bound <span class="op">=</span> sp.Abs(sp.exp(<span class="dv">2</span>)<span class="op">*</span>(x)<span class="op">*</span>(x<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>(x<span class="op">-</span><span class="fl">1.5</span>)<span class="op">*</span>(x<span class="op">-</span><span class="dv">2</span>)<span class="op">/</span><span class="dv">24</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># get bound values for plotting</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>M3_bound_values <span class="op">=</span> evalExpression(M3_bound, x, x_plot)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>T3_bound_values <span class="op">=</span> evalExpression(T3_bound, x, x_plot)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>L3_bound_values <span class="op">=</span> evalExpression(L3_bound, x, x_plot)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the absolute errors and their respective bounds</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># one plot for each polynomial</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>ax.plot(x_plot, np.<span class="bu">abs</span>(getErrors(f, M3, x, x_plot)), label<span class="op">=</span><span class="st">"Error M3"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>ax.plot(x_plot, np.<span class="bu">abs</span>(M3_bound_values), label<span class="op">=</span><span class="st">"Error Bound M3"</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"x"</span>)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Absolute Error"</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Error and Error Bound for M3(x)"</span>)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co"># T3</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>ax.plot(x_plot, np.<span class="bu">abs</span>(getErrors(f, T3, x, x_plot)), label<span class="op">=</span><span class="st">"Error T3"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>ax.plot(x_plot, np.<span class="bu">abs</span>(T3_bound_values), label<span class="op">=</span><span class="st">"Error Bound T3"</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"x"</span>)</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Absolute Error"</span>)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Error and Error Bound for T3(x)"</span>)</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="co"># L3</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>ax.plot(x_plot, np.<span class="bu">abs</span>(getErrors(f, L3, x, x_plot)), label<span class="op">=</span><span class="st">"Error L3"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>ax.plot(x_plot, np.<span class="bu">abs</span>(L3_bound_values), label<span class="op">=</span><span class="st">"Error Bound L3"</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"x"</span>)</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Absolute Error"</span>)</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Error and Error Bound for L3(x)"</span>)</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="p5_files/figure-html/cell-11-output-1.png" width="799" height="523" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="p5_files/figure-html/cell-11-output-2.png" width="799" height="523" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="p5_files/figure-html/cell-11-output-3.png" width="820" height="523" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As seen in the above plots, the absolute errors for each polynomial are well within their respective error bounds and are zero at interpolation points. This supports the idea that the polynomials were constructed correctly and that the error bounds are valid.</p>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<p>The results demonstrate that each polynomial approximation has its strengths and weaknesses depending on the location of the evaluation point. <span class="math inline">\(M_3(x)\)</span> performs best on the left side of the interval, <span class="math inline">\(T_3(x)\)</span> on the right side, and <span class="math inline">\(L_3(x)\)</span> provides a more balanced performance across the entire interval. The error bounds confirm that the actual errors are within theoretical limits, validating the construction of these interpolating polynomials.</p>
+<p>All things considered, <span class="math inline">\(L_3(x)\)</span> is the most effective approximation of <span class="math inline">\(f(x) = e^x\)</span> over the interval <span class="math inline">\([0, 2]\)</span>, as it utilizes information from multiple points across the interval rather than being anchored at a single point. This is supported by its error over the interval, where it is consistently much lower than both <span class="math inline">\(M_3(x)\)</span> and <span class="math inline">\(T_3(x)\)</span>. Its worst error, <span class="math inline">\(\approx 0.050\)</span> at <span class="math inline">\(x \approx 0.34\)</span>, is two orders of magnitude smaller than the worst errors of <span class="math inline">\(M_3(x)\)</span> (<span class="math inline">\(1.056\)</span>, <span class="math inline">\(x=2\)</span>) and <span class="math inline">\(T_3(x)\)</span> (<span class="math inline">\(3.463\)</span>, <span class="math inline">\(x=0\)</span>).</p>
+<section id="challenge---what-degree-taylor-polynomial-outperforms-l_3x" class="level3">
+<h3 class="anchored" data-anchor-id="challenge---what-degree-taylor-polynomial-outperforms-l_3x">Challenge - what degree Taylor Polynomial outperforms <span class="math inline">\(L_3(x)\)</span>?</h3>
+<p>For this challenge, our goal will be to find the smallest degree Taylor Polynomial with a worst case error less than <span class="math inline">\(\approx 0.050\)</span>, <span class="math inline">\(L_3(x)\)</span>’s worst case error. We anchor this polynomial at <span class="math inline">\(x=0\)</span>, since <span class="math inline">\(M_3(x)\)</span> is the better-performing of the two Taylor Polynomials on <span class="math inline">\([0,2]\)</span>. This also means that this new polynomial, <span class="math inline">\(P_n(x)\)</span>, will have its worst case error at <span class="math inline">\(x=2\)</span>, like <span class="math inline">\(M_3(x)\)</span>. For an <span class="math inline">\(n\)</span>th degree Taylor Polynomial the error bound is <span class="math inline">\(|R_n(x)| \le \frac{f^{n+1}(\xi_x)(x)^{n+1}}{(n+1)!}\)</span>. In our case, <span class="math inline">\(f^{n+1}(\xi_x) = e^{\xi_x} \le e^2\)</span> for <span class="math inline">\(\xi_x \in [0,2]\)</span>. We want to find the smallest <span class="math inline">\(n\)</span> such that this error bound is less than the worst-case error of <span class="math inline">\(L_3(x)\)</span>, which we found to be <span class="math inline">\(\approx 0.050\)</span> at <span class="math inline">\(x \approx 0.34\)</span>. So we want to solve for <span class="math inline">\(n\)</span> in the inequality:</p>
+<p><span class="math inline">\(\frac{e^{2}(2)^{n+1}}{(n+1)!} &lt; 0.050\)</span></p>
+<p>For our purposes, an iterative solve will be sufficient. We will start with <span class="math inline">\(n=3\)</span> and increment <span class="math inline">\(n\)</span> until we find the smallest degree that satisfies the inequality.</p>
+<div id="de1a9f5c" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the left side of the inequality as a function of n</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> sp.symbols(<span class="st">"n"</span>, integer<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>error_bound_expr <span class="op">=</span> (sp.exp(<span class="dv">2</span>)<span class="op">*</span>(<span class="dv">2</span>)<span class="op">**</span>(n<span class="op">+</span><span class="dv">1</span>))<span class="op">/</span>sp.factorial(n<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># iterate over each value of n until we find the smallest degree that satisfies the inequality</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># start at 3 since we already know that n=3 does not satisfy the inequality</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>n_val <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> error_bound_expr.subs(n, n_val) <span class="op">&gt;=</span> <span class="fl">0.050</span>:</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    n_val <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The smallest degree Taylor Polynomial that outperforms L3(x) is n=</span><span class="sc">{</span>n_val<span class="sc">}</span><span class="ss">, with a worst-case error bound of </span><span class="sc">{</span><span class="bu">round</span>(<span class="bu">float</span>(error_bound_expr.subs(n, n_val)), <span class="dv">3</span>)<span class="sc">}</span><span class="ss">."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The smallest degree Taylor Polynomial that outperforms L3(x) is n=7, with a worst-case error bound of 0.047.</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>Epperson, James F. (2013). <em>An Introduction to Numerical Methods and Analysis</em>. John Wiley &amp; Sons.</p>
+<p>Ayyub, Bilal M., and Richard H. McCuen. (1995). <em>Numerical Methods for Engineers</em>. Prentice-Hall, Inc.</p>
+<p>Brin, Leon. (2021). <em>Tea Time Numerical Analysis</em>. Leon Q. Brin.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/rrtullis\.github\.io\/numcomp_project_site\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

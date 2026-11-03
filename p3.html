@@ -167,6 +167,10 @@ window.Quarto = {
     <a class="nav-link active" href="./p3.html" aria-current="page"> 
 <span class="menu-text">Project 3</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./p5.html"> 
+<span class="menu-text">Project 5</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -341,14 +345,14 @@ window.Quarto = {
 <p><span class="math inline">\(\frac{4f^{(5)}(\xi)(h)^4}{5!}\)</span>, with <span class="math inline">\(\xi \in (x_0 -2h, x_0+2h)\)</span></p>
 <p>—&gt; <span class="math inline">\(\frac{e^{(x_0+2h)}(h)^4}{30}\)</span></p>
 <p>We can graph all three error bounds on the same set of axes:</p>
-<div id="88f5ad75" class="cell" data-execution_count="1">
+<div id="d29ca18c" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># necessary imports</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tabulate <span class="im">import</span> tabulate</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="1d374d0b" class="cell" data-execution_count="2">
+<div id="a420113d" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define parameters</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> <span class="fl">0.0</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> np.linspace(<span class="fl">0.001</span>, <span class="fl">0.3</span>, <span class="dv">200</span>)</span>
@@ -395,7 +399,7 @@ window.Quarto = {
 <section id="derivative-function-definitions" class="level3">
 <h3 class="anchored" data-anchor-id="derivative-function-definitions">Derivative Function Definitions</h3>
 <p>The first real bit of work we need to do is define our numeric first derivative functions in Python. These will be the functions our program can choose from when tasked with finding the first derivative of <span class="math inline">\(x\)</span>.</p>
-<div id="2870dc85" class="cell" data-execution_count="3">
+<div id="63e247a4" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fprime_1(i, step, vals, verbose<span class="op">=</span><span class="va">False</span>):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Approximate f'(x) using the 3-point midpoint formula.</span></span>
@@ -607,7 +611,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="the-derive-function">The <code>derive</code> Function</h3>
 <p>The <code>derive</code> function is the centerpiece of this project. When provided a properly formatted table of function inputs and outputs, as well as a dictionary of candidate functions, it will return the best available estimate for <span class="math inline">\(f'(x_0)\)</span> out of the options available. The ‘best’ estimate is defined as the one given by the function with the highest order of convergence, with the minimum number of steps to the furthest point on its stencil as the tiebreaker. So, when asked to choose between two functions with, for instance, quadratic convergence, the first of which uses <span class="math inline">\([x-2, x+2]\)</span> while the second uses <span class="math inline">\([x-3, x+1]\)</span>, it will choose the first function.</p>
 <p>It’s also worth noting that <code>derive</code> takes what might be considered non-standard inputs. Initially, I wanted to implement the values of <span class="math inline">\(f\)</span> as a dictionary, like so:</p>
-<div id="bf18d465" class="cell" data-execution_count="4">
+<div id="5c8d2501" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> {</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fl">2.1</span>: <span class="op">-</span><span class="fl">1.709847</span>,</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fl">2.2</span>: <span class="op">-</span><span class="fl">1.373823</span>,</span>
@@ -616,7 +620,7 @@ window.Quarto = {
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>However, when doing this I quickly ran into the issue of floating point error when trying to increment keys by <span class="math inline">\(h\)</span>:</p>
-<div id="4f76eaff" class="cell" data-execution_count="5">
+<div id="88949dee" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">2.2</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="fl">0.1</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>x_plus_h <span class="op">=</span> x <span class="op">+</span> h</span>
@@ -629,7 +633,7 @@ window.Quarto = {
 </div>
 </div>
 <p>This made it impossible to ensure that the needed values would be retrieved. One solution would have been to simply round each key, but I was concerned about how this could potentially misalign keys when using a small <span class="math inline">\(h\)</span>. To get around this problem, I chose to use an integer-indexed grid:</p>
-<div id="7302231f" class="cell" data-execution_count="6">
+<div id="f57d5259" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> {</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>: <span class="op">-</span><span class="fl">1.709847</span>,</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>: <span class="op">-</span><span class="fl">1.373823</span>,</span>
@@ -638,7 +642,7 @@ window.Quarto = {
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This way, as long as you know the first true <span class="math inline">\(x\)</span> value on the grid and the step size of the grid, you can safely retrieve all the values you need. This is also why <code>derive</code> requires <code>x_start</code> as an input.</p>
-<div id="abedcfbb" class="cell" data-execution_count="7">
+<div id="96d2dcc5" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">2.2</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="fl">0.1</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>x_start <span class="op">=</span> <span class="fl">2.1</span></span>
@@ -655,7 +659,7 @@ window.Quarto = {
 </div>
 <p>The other notable input is the candidate function dictionary. This dictionary stores all functions you want to give <code>derive</code> the option to use. It is keyed by an ID (in this case, the function number in the report), and each corresponding value is a list containing the function itself, its order of convergence as an integer (e.g., quadratic = 2), and the distance of its furthest input value from <span class="math inline">\(x_0\)</span>. For now, these values must be input manually. I chose this form of input so I could easily keep track of the functions and their ranking criteria in one place.</p>
 <p>Now, for the actual definition of <code>derive</code>:</p>
-<div id="99d597d7" class="cell" data-execution_count="8">
+<div id="afe51d23" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> derive(f_vals, x_0, x_start, step, candidate_functions, verbose<span class="op">=</span><span class="va">False</span>):</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Approximate f'(x_0) using the best candidate function from a set of candidate functions.</span></span>
@@ -778,7 +782,7 @@ window.Quarto = {
 </tbody>
 </table>
 <p>Now for our estimate:</p>
-<div id="30cc85e9" class="cell" data-execution_count="9">
+<div id="41e2922c" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize our function dictionary</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>function_dict <span class="op">=</span> {</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>: [ fprime_1, <span class="dv">2</span>, <span class="dv">1</span>], <span class="co"># {number: [function, order of convergence, # of steps to furthest point]}</span></span>
@@ -825,7 +829,7 @@ f'(2.7) = 0.39479</code></pre>
 <section id="approximations-of-gx-ex" class="level3">
 <h3 class="anchored" data-anchor-id="approximations-of-gx-ex">Approximations of <span class="math inline">\(g(x) = e^x\)</span></h3>
 <p>Now that we’ve verified our function works as intended for the test points, we approximate <span class="math inline">\(g'(x)\)</span> over the interval <span class="math inline">\([-1, 1]\)</span>, with varying step sizes. Note that in the code blocks below, <span class="math inline">\(g(x)\)</span> is taken to be the true value of <span class="math inline">\(g'(x)\)</span>, since <span class="math inline">\(g(x) = e^x = g'(x)\)</span>.</p>
-<div id="04261e51" class="cell" data-execution_count="10">
+<div id="f560a2f1" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># general setup</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># use the evalExpression function from Project 1</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> evalExpression(f, symb, input_vals):</span>
@@ -848,7 +852,7 @@ f'(2.7) = 0.39479</code></pre>
 </div>
 <section id="points-h0.2" class="level4">
 <h4 class="anchored" data-anchor-id="points-h0.2">11 Points, <span class="math inline">\(h=0.2\)</span></h4>
-<div id="c9270c2d" class="cell" data-execution_count="11">
+<div id="b7bfa345" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first interval: 11 points, [-1, 1]</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># get the values of g on the interval [-1, 1] at 11 evenly spaced points</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>i1 <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">11</span>)</span>
@@ -895,7 +899,7 @@ f'(2.7) = 0.39479</code></pre>
 </section>
 <section id="points-h0.1" class="level4">
 <h4 class="anchored" data-anchor-id="points-h0.1">21 Points, <span class="math inline">\(h=0.1\)</span></h4>
-<div id="abfa6678" class="cell" data-execution_count="12">
+<div id="82e2985d" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># second interval: 21 points, [-1, 1]</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># get the values of g on the interval [-1, 1] at 21 evenly spaced points</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>i2 <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">21</span>)</span>
@@ -952,7 +956,7 @@ f'(2.7) = 0.39479</code></pre>
 </section>
 <section id="points-h0.05" class="level4">
 <h4 class="anchored" data-anchor-id="points-h0.05">41 Points, <span class="math inline">\(h=0.05\)</span></h4>
-<div id="25ff95b3" class="cell" data-execution_count="13">
+<div id="c1b9b348" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># third interval: 41 points, [-1, 1]</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># get the values of g on the interval [-1, 1] at 41 evenly spaced points</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>i3 <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">41</span>)</span>
@@ -1032,7 +1036,7 @@ f'(2.7) = 0.39479</code></pre>
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
 <p>The tables generated above are a bit cumbersome to read. Instead, we can plot all 3 estimates and <span class="math inline">\(g(x)\)</span> on the same axes.</p>
-<div id="5fc2e572" class="cell" data-execution_count="14">
+<div id="778dc6a5" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate a more continuous interval to display the true g'(x) over</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># again: g'(x) = e^x = g(x) here</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>x_vals <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1000</span>)</span>
@@ -1067,7 +1071,7 @@ f'(2.7) = 0.39479</code></pre>
 </div>
 </div>
 <p>When looking at the entire interval, the three estimates are nearly indistinguishable visually, apart from some covering more points than others. Let’s instead examine a table of our values over a smaller section of the interval.</p>
-<div id="4935b631" class="cell" data-execution_count="15">
+<div id="7eaa1a3f" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we'll focus on [-0.25, 0.25], or the inner quarter of the interval</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the correct range of values from each table above</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>g1_vals <span class="op">=</span> <span class="bu">zip</span>(table_g1[<span class="st">"x"</span>], table_g1[<span class="st">"g'(x) est."</span>])</span>
@@ -1108,7 +1112,7 @@ f'(2.7) = 0.39479</code></pre>
 </div>
 </div>
 <p>This table makes it clear how much data is gained from using a larger <span class="math inline">\(n\)</span> (and thus a smaller <span class="math inline">\(h\)</span>) over the same interval. Additionally, we can see that the estimates of <span class="math inline">\(g'(x)\)</span> improve as <span class="math inline">\(n\)</span> increases. We can generate a complementary table of errors to investigate this further.</p>
-<div id="859630dc" class="cell" data-execution_count="16">
+<div id="201539d9" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we'll focus on [-0.25, 0.25], or the inner quarter of the interval</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the correct range of values from each table above</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>g1_errs <span class="op">=</span> <span class="bu">zip</span>(table_g1[<span class="st">"x"</span>], table_g1[<span class="st">"error"</span>])</span>
@@ -1147,7 +1151,7 @@ f'(2.7) = 0.39479</code></pre>
 </div>
 </div>
 <p>A few things become apparent here. We see that error does indeed improve as we increase <span class="math inline">\(n\)</span>. Additionally, there is a slow but steady increase in error as we move right across the interval. A graph of the error can give us a more complete picture.</p>
-<div id="d9b9389f" class="cell" data-execution_count="17">
+<div id="656b557a" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># gather up all our errors</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># and make them absolute</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>gprime_error1 <span class="op">=</span> table_g1[<span class="st">"error"</span>]</span>
@@ -1216,7 +1220,7 @@ f'(2.7) = 0.39479</code></pre>
 </tbody>
 </table>
 <p>We can plot the bounds alongside our actual errors to verify that our errors are reasonable.</p>
-<div id="d9e2db5a" class="cell" data-execution_count="18">
+<div id="7656d332" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">12</span>))</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, (h, x_values, errors, label, color) <span class="kw">in</span> <span class="bu">zip</span>(axes, [</span>
@@ -1281,7 +1285,7 @@ f'(2.7) = 0.39479</code></pre>
 </tbody>
 </table>
 <p>Once again, we can plot these alongside our actual errors to check that they are reasonable.</p>
-<div id="da0e6043" class="cell" data-execution_count="19">
+<div id="61ce4cea" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>endpoint_series <span class="op">=</span> [</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    (step_g1, i1, gprime_error1, <span class="st">"h=0.2"</span>, <span class="st">"crimson"</span>),</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    (step_g2, i2, gprime_error2, <span class="st">"h=0.1"</span>, <span class="st">"darkorange"</span>),</span>
@@ -1330,7 +1334,7 @@ f'(2.7) = 0.39479</code></pre>
 <span id="cb32-46"><a href="#cb32-46" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
 <span id="cb32-47"><a href="#cb32-47" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\reaga\AppData\Local\Temp\ipykernel_12208\3347378526.py:46: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+<pre><code>C:\Users\reaga\AppData\Local\Temp\ipykernel_4340\3347378526.py:46: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   fig.tight_layout()</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -1434,7 +1438,7 @@ f'(2.7) = 0.39479</code></pre>
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/rrtullis\.github\.io\/numcomp_project_site\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
