@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>p7 – numcomp_project_site</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">numcomp_project_site</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./p3.html"> 
+<span class="menu-text">Project 3</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./p5.html"> 
+<span class="menu-text">Project 5</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./p7.html" aria-current="page"> 
+<span class="menu-text">Project 7</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a>
+  <ul class="collapse">
+  <li><a href="#lagrange-polynomials" id="toc-lagrange-polynomials" class="nav-link" data-scroll-target="#lagrange-polynomials">Lagrange Polynomials</a></li>
+  <li><a href="#hermite-polynomials" id="toc-hermite-polynomials" class="nav-link" data-scroll-target="#hermite-polynomials">Hermite Polynomials</a></li>
+  <li><a href="#cubic-splines" id="toc-cubic-splines" class="nav-link" data-scroll-target="#cubic-splines">Cubic splines</a></li>
+  <li><a href="#error-bounds" id="toc-error-bounds" class="nav-link" data-scroll-target="#error-bounds">Error Bounds</a></li>
+  </ul></li>
+  <li><a href="#computer-program" id="toc-computer-program" class="nav-link" data-scroll-target="#computer-program">Computer Program</a>
+  <ul class="collapse">
+  <li><a href="#dohermite" id="toc-dohermite" class="nav-link" data-scroll-target="#dohermite">doHermite</a></li>
+  <li><a href="#dospline" id="toc-dospline" class="nav-link" data-scroll-target="#dospline">doSpline</a></li>
+  </ul></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Project 7</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Interpolation methods, also known as interpolants, are methods of approximating a continuous function <span class="math inline">\(f(x)\)</span> from a limited set of known <span class="math inline">\((x, f(x))\)</span> values. <span class="math inline">\(g(x)\)</span>, an approximation of <span class="math inline">\(f(x)\)</span>, is said to interpolate the point <span class="math inline">\((a, b)\)</span> if <span class="math inline">\(f(a)=b=g(a)\)</span> and the information <span class="math inline">\(f(a)=b\)</span> is used when creating <span class="math inline">\(g(x)\)</span>. Interpolation methods are useful for approximating the value of the unknown <span class="math inline">\(f(x)\)</span> between limited known/measured values of <span class="math inline">\(f(x)\)</span>. However, their estimates tend to quickly become inaccurate when moving away from known values, even more so when moving outside the interval containing all known values.</p>
+<p>For this project - estimating the growth rate of corn roots at points a certain distance from the kernel - we will attempt three different interpolating methods: a Lagrange polynomial, a Hermite polynomial, and a cubic spline. After constructing each approximation, we will evaluate their performance compared to one another and select the best method for approximating <span class="math inline">\(REG(z)\)</span> on <span class="math inline">\([0,10]\)</span>.</p>
+</section>
+<section id="analysis" class="level2">
+<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
+<p>We will begin with a by-hand construction of each type of polynomial for a smaller subset of the provided data. Note that, since we do not know the actual function <span class="math inline">\(REG(z)\)</span>, the numeric derivatives of the example points were approximated using a Python tool implemented in the Computer Program section of this project.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>z</th>
+<th>REG(z)</th>
+<th>REG’(z)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>0.05833</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>0.35</td>
+<td>-0.04375</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td>0</td>
+<td>-0.005</td>
+</tr>
+</tbody>
+</table>
+<section id="lagrange-polynomials" class="level3">
+<h3 class="anchored" data-anchor-id="lagrange-polynomials">Lagrange Polynomials</h3>
+<p>A Lagrange polynomial is a unique polynomial of lowest degree that interpolates a particular set of points. If it interpolates <span class="math inline">\(n+1\)</span> points, then it has degree of at most <span class="math inline">\(n\)</span>. A Lagrange polynomial is given by:</p>
+<p><span class="math display">\[P(x) = \sum_{i=0}^{n} f(x_i) \prod_{\substack{j=0 \\ j \neq i}}^{n} \frac{x - x_j}{x_i - x_j}\]</span></p>
+<p>For our example construction, our Lagrange polynomial will have at most degree 2 since it will interpolate 3 points. We can construct <span class="math inline">\(L_2(z)\)</span> directly using the above formula:</p>
+<p><span class="math inline">\(L_2(z) = 0\frac{(z-5)(z-10)}{(0-5)(0-10)} + 0.35\frac{(z-0)(z-10)}{(5-0)(5-10)} + 0\frac{(z-0)(z-5)}{(10-0)(10-5)}\)</span></p>
+<p><span class="math inline">\(L_2(z) = 0.35\frac{(z-0)(z-10)}{(5-0)(5-10)}\)</span></p>
+<p><span class="math inline">\(L_2(z) = 0.35\frac{(z-0)(z-10)}{-25}\)</span></p>
+<section id="interpolation" class="level4">
+<h4 class="anchored" data-anchor-id="interpolation">Interpolation</h4>
+<p>We can verify that <span class="math inline">\(L_2(z)\)</span> interpolates the 3 points used to construct it by checking that <span class="math inline">\(L_2(z) = REG(z)\)</span> for <span class="math inline">\(z=0, 5, 10\)</span>:</p>
+<p>For <span class="math inline">\(z=0\)</span>:</p>
+<p><span class="math inline">\(L_2(0) = 0.35\frac{(0)(-10)}{-25} = 0 = REG(0)\)</span></p>
+<p>For <span class="math inline">\(z=5\)</span>:</p>
+<p><span class="math inline">\(L_2(5) = 0.35\frac{(5)(-5)}{-25} = 0.35*1 = REG(5)\)</span></p>
+<p>For <span class="math inline">\(z=10\)</span>:</p>
+<p><span class="math inline">\(L_2(10) = 0.35\frac{(10)(0)}{-25} = 0 = REG(10)\)</span></p>
+</section>
+</section>
+<section id="hermite-polynomials" class="level3">
+<h3 class="anchored" data-anchor-id="hermite-polynomials">Hermite Polynomials</h3>
+<p>A Hermite polynomial is a type of interpolating polynomial based on Lagrange polynomials. Like Lagrange polynomials, Hermite polynomials interpolate each point used in their construction. They also interpolate the derivative at each point, ensuring that <span class="math inline">\(H'(x) = f'(x)\)</span>. In this way, they use 2 pieces of information about each point used in their construction. In our example, since we are using <span class="math inline">\(n+1 = 3\)</span> points, the Hermite polynomial will have degree at most <span class="math inline">\(2n+1 = 5\)</span>.</p>
+<section id="construction" class="level4">
+<h4 class="anchored" data-anchor-id="construction">Construction</h4>
+<p>There are multiple ways to construct a Hermite polynomial. For this example, we will construct <span class="math inline">\(H_5(z)\)</span> using divided differences. First, we will remap our existing points to a new set of variables:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(i\)</span></th>
+<th><span class="math inline">\(z_i\)</span></th>
+<th><span class="math inline">\(x_i\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>5</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>10</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>-</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>-</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>-</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<p>Notice how this mapping has essentially just made it so that every <span class="math inline">\(z_i\)</span> value occurs twice. This reflects how Hermite polynomials use 2 pieces of information for each input <span class="math inline">\(z\)</span> value.</p>
+<p>Our next step in constructing <span class="math inline">\(H_5(z)\)</span> will be to generate a divided difference table for the remapped data. The <span class="math inline">\(k\)</span>th divided difference of two points is denoted <span class="math inline">\(f[x_i, x_{i+1}, \dots, x_{i+k}]\)</span>, and is given by</p>
+<p><span class="math display">\[f[x_i, x_{i+1}, \dots, x_{i+k}] = \frac{f[x_{i+1}, \dots, x_{i+k}] - f[x_i, \dots, x_{i+k-1}]}{x_{i+k} - x_i}\]</span></p>
+<p>For <span class="math inline">\(k=0\)</span>, <span class="math inline">\(f[x_i] = f(x_i)\)</span>.</p>
+<p>There are a few things to notice about the divided difference formula. First, it is a recursive function - to compute the 2nd divided difference, you must also compute the first divided differences needed to create it. Second, if <span class="math inline">\(x_{i+k} = x_i\)</span>, it will be undefined. When constructing a divided difference table from our <span class="math inline">\(x\)</span>-mapped points, this will occur when computing the first divided differences. The solution then is to substitute <span class="math inline">\(f'(x_i)\)</span> for <span class="math inline">\(f[x_i, x_{i+1}]\)</span> when <span class="math inline">\(x_i = x_{i+1}\)</span>.</p>
+<p>To begin, we will compute the divided differences table using an online calculator. The first row of this table will become the coefficients used in <span class="math inline">\(H_5(z)\)</span>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(i\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(z_i\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(f[z_i]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(f[z_i, z_{i+1}]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(f[z_i, \dots, z_{i+2}]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(f[z_i, \dots, z_{i+3}]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(f[z_i, \dots, z_{i+4}]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(f[z_i, \dots, z_{i+5}]\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>0</strong></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><strong>0.05833</strong></td>
+<td style="text-align: center;">0.002334</td>
+<td style="text-align: center;">-0.0050168</td>
+<td style="text-align: center;">0.00067668</td>
+<td style="text-align: center;">-0.000048668</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0.07</td>
+<td style="text-align: center;">-0.02275</td>
+<td style="text-align: center;">0.00175</td>
+<td style="text-align: center;">0.00019</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>2</strong></td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">0.35</td>
+<td style="text-align: center;"><strong>-0.04375</strong></td>
+<td style="text-align: center;">-0.00525</td>
+<td style="text-align: center;">0.00365</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>3</strong></td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">0.35</td>
+<td style="text-align: center;">-0.07</td>
+<td style="text-align: center;">0.013</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>4</strong></td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><strong>-0.005</strong></td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>5</strong></td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+</tr>
+</tbody>
+</table>
+<p>We can use these divided differences to construct <span class="math inline">\(H_5(z)\)</span> like so:</p>
+<p><span class="math display">\[H_5(z) = f[x_0] + f[x_0, x_1](z - x_0) + f[x_0, x_1, x_2](z - x_0)(z - x_1) + f[x_0, x_1, x_2, x_3](z - x_0)(z - x_1)(z - x_2) + f[x_0, x_1, x_2, x_3, x_4](z - x_0)(z - x_1)(z - x_2)(z - x_3) + f[x_0, x_1, x_2, x_3, x_4, x_5](z - x_0)(z - x_1)(z - x_2)(z - x_3)(z - x_4)\]</span></p>
+<p>From here, we can plug in the divided difference and <span class="math inline">\(z_i\)</span> values to get <span class="math inline">\(H_5(z)\)</span>: <span class="math display">\[H_5(z) = 0.05833z + 0.002334z^2 - 0.0050168z^2(z - 5) + 0.00067668z^2(z - 5)^2 - 0.000048668z^2(z - 5)^2(z - 10)\]</span></p>
+</section>
+<section id="interpolation-1" class="level4">
+<h4 class="anchored" data-anchor-id="interpolation-1">Interpolation</h4>
+<p>When substituting <span class="math inline">\(z=0,5,10\)</span> into <span class="math inline">\(H_5(z)\)</span>, we can see that:</p>
+<p><span class="math inline">\(H_5(0)=0=REG(0)\)</span><br>
+<span class="math inline">\(H_5(5)=0.05833(5)+0.002334(25)=0.35=REG(5)\)</span><br>
+<span class="math inline">\(H_5(10)=0.05833(10) + 0.002334(100) - 0.0050168(500) + 0.00067668(2500)=0=REG(10)\)</span></p>
+<p>We can also check that <span class="math inline">\(H_5(z)\)</span> interpolates <span class="math inline">\(REG'(z)\)</span>. Taking the derivative of <span class="math inline">\(H_5(z)\)</span> using an online tool yields:</p>
+<p><span class="math inline">\(H_5'(z) = -0.00024334z^4 + 0.00660016z^3 - 0.0536013z^2 + 0.113004z + 0.05833\)</span></p>
+<p>We can now verify that:</p>
+<p><span class="math inline">\(H_5'(0)=0.05833=REG'(0)\)</span><br>
+<span class="math inline">\(H_5'(5)=-0.00024334(5)^4 + 0.00660016(5)^3 - 0.0536013(5)^2 + 0.113004(5) + 0.05833=-0.04375=REG'(5)\)</span><br>
+<span class="math inline">\(H_5'(10)=-0.00024334(10)^4 + 0.00660016(10)^3 - 0.0536013(10)^2 + 0.113004(10) + 0.05833=-0.005=REG'(10)\)</span></p>
+</section>
+</section>
+<section id="cubic-splines" class="level3">
+<h3 class="anchored" data-anchor-id="cubic-splines">Cubic splines</h3>
+<p>A cubic spline is a set of cubic polynomials joined at each interpolated <span class="math inline">\(x\)</span> value. Unlike a Lagrange or Hermite polynomial, which uses one polynomial for the entire interval, a spline uses a different cubic on each interval between consecutive data points. At each junction, the two cubics have the same function value, first derivative, and second derivative. However, while the first and second derivatives match at each junction, they are <em>not</em> interpolated - only the function value is. #### Construction</p>
+<p>We will construct a natural cubic spline for the three example points. A natural cubic spline <span class="math inline">\(S(z)\)</span> has <span class="math inline">\(S''(z)=0\)</span> at its two endpoints. The construction uses the general cubic form</p>
+<p><span class="math display">\[S_j(z)=a_j+b_j(z-z_j)+c_j(z-z_j)^2+d_j(z-z_j)^3\]</span></p>
+<p>for each interval <span class="math inline">\([z_j,z_{j+1}]\)</span>. Here <span class="math inline">\(a_j\)</span>, <span class="math inline">\(b_j\)</span>, <span class="math inline">\(c_j\)</span>, and <span class="math inline">\(d_j\)</span> are coefficients, and <span class="math inline">\(z-z_j\)</span> measures position within that interval.</p>
+<p>For our data, both interval widths are <span class="math inline">\(h=5\)</span>. We set <span class="math inline">\(c_0=c_2=0\)</span> from the natural boundary conditions. At the interior point <span class="math inline">\(z_1=5\)</span>, the requirement that the two cubics have matching second derivatives gives the following equation:</p>
+<p><span class="math display">\[2(h_0+h_1)c_1=3\frac{a_2-a_1}{h_1}-3\frac{a_1-a_0}{h_0}.\]</span></p>
+<p>Substituting <span class="math inline">\(h_0=h_1=5\)</span>, <span class="math inline">\(a_0=0\)</span>, <span class="math inline">\(a_1=0.35\)</span>, and <span class="math inline">\(a_2=0\)</span> gives</p>
+<p><span class="math display">\[20c_1=3\frac{0-0.35}{5}-3\frac{0.35-0}{5}=-0.42,\]</span></p>
+<p>so <span class="math inline">\(c_1=-0.021\)</span>.</p>
+<p>We next compute the remaining coefficients from</p>
+<p><span class="math display">\[b_j=\frac{a_{j+1}-a_j}{h_j}-\frac{h_j(2c_j+c_{j+1})}{3},\qquad d_j=\frac{c_{j+1}-c_j}{3h_j}.\]</span></p>
+<p>This gives <span class="math inline">\(b_0=0.105\)</span>, <span class="math inline">\(d_0=-0.0014\)</span>, <span class="math inline">\(b_1=0\)</span>, and <span class="math inline">\(d_1=0.0014\)</span>. Therefore the spline is</p>
+<p><span class="math display">\[S(z)=
+\begin{cases}
+0.105z-0.0014z^3, &amp; 0\leq z\leq 5,\\[4pt]
+0.35-0.021(z-5)^2+0.0014(z-5)^3, &amp; 5\leq z\leq 10.
+\end{cases}\]</span></p>
+<section id="interpolation-2" class="level4">
+<h4 class="anchored" data-anchor-id="interpolation-2">Interpolation</h4>
+<p>At the original data points, the spline reproduces the values exactly:</p>
+<p><span class="math inline">\(S(0)=0.105(0)-0.0014(0)^3=0=REG(0),\)</span></p>
+<p><span class="math inline">\(S(5)=0.105(5)-0.0014(5)^3=0.525-0.175=0.35=REG(5),\)</span></p>
+<p><span class="math inline">\(S(10)=0.35-0.021(5)^2+0.0014(5)^3=0.35-0.525+0.175=0=REG(10).\)</span></p>
+<p>The two pieces also meet smoothly at <span class="math inline">\(z=5\)</span>. Their first derivatives are</p>
+<p><span class="math display">\[S_0'(z)=0.105-0.0042z^2\]</span></p>
+<p>and</p>
+<p><span class="math display">\[S_1'(z)=-0.042(z-5)+0.0042(z-5)^2.\]</span></p>
+<p>Thus <span class="math inline">\(S_0'(5)=S_1'(5)=0\)</span>. Their second derivatives are</p>
+<p><span class="math display">\[S_0''(z)=-0.0084z,\qquad S_1''(z)=-0.042+0.0084(z-5).\]</span></p>
+<p>At <span class="math inline">\(z=5\)</span>, both second derivatives are <span class="math inline">\(-0.042\)</span>, and at <span class="math inline">\(z=0\)</span> and <span class="math inline">\(z=10\)</span>, the second derivative is zero. These checks confirm that the natural cubic spline interpolates all three data points and has matching value, first derivative, and second derivative at the interior junction.</p>
+</section>
+</section>
+<section id="error-bounds" class="level3">
+<h3 class="anchored" data-anchor-id="error-bounds">Error Bounds</h3>
+<p>Unlike previous projects, we are not approximating a defined function here. Instead, we only have access to discrete data points, and we are trying to estimate the unknown function behind them. Because the true function is unknown, we cannot calculate a numerical error bound for any of these methods. We can, however, compare the structure of their error terms and the amount of information each method uses. Note that these error terms are for functions that interpolate all 11 points, rather than the 3 points in the examples above.</p>
+<p>For the Lagrange polynomial, the error bound is given by:</p>
+<p><span class="math inline">\(R(x) \le |\frac{f^{(11)}(\xi_z)}{11!}\prod_{i=0}^{10}(x-x_i)|\)</span>, with <span class="math inline">\(\xi_z \in (0,10)\)</span></p>
+<p>The error bound depends on the eleventh derivative of the unknown function and on an 11-factor product of the distances between <span class="math inline">\(x\)</span> and the 11 data points. It uses information over the entire <span class="math inline">\([0,10]\)</span> interval in every prediction. This could lead to substantial error if points far away from the estimated points are given undue influence.</p>
+<p>For the Hermite polynomial, the error bound is given by:</p>
+<p><span class="math inline">\(R(x) \le |\frac{f^{(22)}(\xi_x)}{22!}\prod_{i=0}^{10}(x-x_i)^2|\)</span>, with <span class="math inline">\(\xi_z \in (0,10)\)</span></p>
+<p>This error bound depends on the 22nd derivative and on a squared product involving every interpolation point. In the full construction, every data point contributes both its value and derivative, for 22 pieces of information. Although this extra derivative information should reduce the error in principle, the derivatives used in its construction were themselves estimates. Therefore, the polynomial’s accuracy may depend on the accuracy of the derivatives used to construct it.</p>
+<p>For the cubic spline, the error bound is given by:</p>
+<p><span class="math inline">\(\frac{5M}{384}h^4\)</span> where <span class="math inline">\(\max\limits_{a \le x \le b}|f^{(4)}(x)| \le M\)</span> and <span class="math inline">\(\max\limits_{0 \le j \le n}(x_{j+1}-x_j) = h\)</span></p>
+<p>The error bound is controlled by the fourth derivative of the unknown function and the fourth power of the interval width <span class="math inline">\(h\)</span>. The smaller <span class="math inline">\(h\)</span> and the lower derivative order make this bound depend on local behavior rather than on one very high-degree polynomial. Since <span class="math inline">\(h=1\)</span> for the complete data grid, a cubic spline uses 11 data values but replaces a single global polynomial with smaller cubic pieces joined smoothly.</p>
+<p>Looking at these error bounds, I predict that the cubic spline will be the best method to use here. Unlike the Lagrange and Hermite polynomials, which account for the value (and in the case of the Hermite polynomial, the derivative of) every interpolation point in one polynomial, the cubic spline instead accounts for only the local endpoints of each segment. This cuts out the influence of interpolated points that are very far from the point you are estimating, and can prevent overfitting when interpolating a large number of points.</p>
+</section>
+</section>
+<section id="computer-program" class="level2">
+<h2 class="anchored" data-anchor-id="computer-program">Computer Program</h2>
+<p>To begin with the computer program portion of this assignment, we will import several tools from previous projects. Further information on each can be found in their respective projects.</p>
+<div id="130c42af" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># package imports</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>From Project 1 - a helper function to easily evaluate expressions.</p>
+<div id="68c04119" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> evalExpression(f, symb, input_vals):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Evaluates the provided single-variable expression for a list of input values. Takes a symbolic expression f, symbol sym, and array-like input_vals as input. Returns a list of the output values.</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [f.subs(symb, val) <span class="cf">for</span> val <span class="kw">in</span> input_vals]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>From Project 3 - a function to perform numerical differentiation, and each of the candidate function ‘stencils’ it may use.</p>
+<div id="59e67a6f" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Derive</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># define all candidate functions</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fprime_1(i, step, vals, verbose<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Approximate f'(x) using the 3-point midpoint formula.</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">    O(h^2) convergence, farthest step = 1.</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Takes integer grid index i, step size h, and a dictionary of function values keyed by integer grid index.</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># fetch required f(x) values from the vals dictionary</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        fm1 <span class="op">=</span> vals[i <span class="op">-</span> <span class="dv">1</span>]</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        fp1 <span class="op">=</span> vals[i <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># return None if any of the required values are not found</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">KeyError</span>:</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> verbose:</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"(1) Input values not found in vals dictionary."</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> verbose:</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"(1) is valid."</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># approximate the derivative</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (fp1 <span class="op">-</span> fm1) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> step)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fprime_2(i, step, vals, verbose<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="co">    Approximate f'(x) using an unbalanced 3-point formula.</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co">    O(h) convergence, farthest step = 3.</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co">    Takes integer grid index i, step size h, and a dictionary of function values keyed by integer grid index.</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># fetch required f(x) values from the vals dictionary</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>        fm1 <span class="op">=</span> vals[i <span class="op">-</span> <span class="dv">1</span>]</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>        fp3 <span class="op">=</span> vals[i <span class="op">+</span> <span class="dv">3</span>]</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># return None if any of the required values are not found</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">KeyError</span>:</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> verbose:</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"(2) Input values not found in vals dictionary."</span>)</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> verbose:</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"(2) is valid."</span>)</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    <span class="co"># approximate the derivative</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (fp3 <span class="op">-</span> fm1) <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> step)</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fprime_3(i, step, vals, verbose<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="co">    Approximate f'(x) using the 5-point midpoint formula.</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="co">    O(h^4) convergence, farthest step = 2.</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="co">    Takes integer grid index i, step size h, and a dictionary of function values keyed by integer grid index.</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>    <span class="co"># fetch required f(x) values from the vals dictionary</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>        fm2 <span class="op">=</span> vals[i <span class="op">-</span> <span class="dv">2</span>]</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>        fm1 <span class="op">=</span> vals[i <span class="op">-</span> <span class="dv">1</span>]</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>        fp1 <span class="op">=</span> vals[i <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>        fp2 <span class="op">=</span> vals[i <span class="op">+</span> <span class="dv">2</span>]</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>    <span class="co"># return None if any of the required values are not found</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">KeyError</span>:</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> verbose:</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"(3) Input values not found in vals dictionary."</span>)</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> verbose:</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"(3) is valid."</span>)</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>    <span class="co"># approximate the derivative</span></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>        fm2 <span class="op">-</span> <span class="dv">8</span> <span class="op">*</span> fm1 <span class="op">+</span> <span class="dv">8</span> <span class="op">*</span> fp1 <span class="op">-</span> fp2</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">/</span> (<span class="dv">12</span> <span class="op">*</span> step)</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fprime_4(i, step, vals, verbose<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a><span class="co">    Approximate f'(x) using a 5-point forward formula.</span></span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a><span class="co">    O(h^4) convergence, farthest step = 4.</span></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a><span class="co">    Takes integer grid index i, step size h, and a dictionary of function values keyed by integer grid index.</span></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>    <span class="co"># fetch required f(x) values from the vals dictionary</span></span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>        f0 <span class="op">=</span> vals[i]</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>        fp1 <span class="op">=</span> vals[i <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>        fp2 <span class="op">=</span> vals[i <span class="op">+</span> <span class="dv">2</span>]</span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>        fp3 <span class="op">=</span> vals[i <span class="op">+</span> <span class="dv">3</span>]</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>        fp4 <span class="op">=</span> vals[i <span class="op">+</span> <span class="dv">4</span>]</span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>    <span class="co"># return None if any of the required values are not found</span></span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">KeyError</span>:</span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> verbose:</span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"(4) Input values not found in vals dictionary."</span>)</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> verbose:</span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"(4) is valid."</span>)</span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>    <span class="co"># approximate the derivative</span></span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (</span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span><span class="dv">25</span> <span class="op">*</span> f0</span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> <span class="dv">48</span> <span class="op">*</span> fp1</span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span> <span class="dv">36</span> <span class="op">*</span> fp2</span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> <span class="dv">16</span> <span class="op">*</span> fp3</span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span> <span class="dv">3</span> <span class="op">*</span> fp4</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">/</span> (<span class="dv">12</span> <span class="op">*</span> step)</span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fprime_5(i, step, vals, verbose<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a><span class="co">    Approximate f'(x) using a 5-point unbalanced formula.</span></span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a><span class="co">    O(h^3) convergence, farthest step = 3.</span></span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a><span class="co">    Takes integer grid index i, step size h, and a dictionary of function values keyed by integer grid index.</span></span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>    <span class="co"># fetch required f(x) values from the vals dictionary</span></span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>        fm1 <span class="op">=</span> vals[i <span class="op">-</span> <span class="dv">1</span>]</span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>        f0 <span class="op">=</span> vals[i]</span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>        fp1 <span class="op">=</span> vals[i <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>        fp2 <span class="op">=</span> vals[i <span class="op">+</span> <span class="dv">2</span>]</span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>        fp3 <span class="op">=</span> vals[i <span class="op">+</span> <span class="dv">3</span>]</span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a>    <span class="co"># return None if any of the required values are not found</span></span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">KeyError</span>:</span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> verbose:</span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"(5) Input values not found in vals dictionary."</span>)</span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> verbose:</span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"(5) is valid."</span>)</span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a>    <span class="co"># approximate the derivative</span></span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (</span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span><span class="dv">18</span> <span class="op">*</span> fm1</span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span> <span class="dv">5</span> <span class="op">*</span> f0</span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> <span class="dv">18</span> <span class="op">*</span> fp1</span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> <span class="dv">9</span> <span class="op">*</span> fp2</span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span> <span class="dv">4</span> <span class="op">*</span> fp3</span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">/</span> (<span class="dv">42</span> <span class="op">*</span> step)</span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fprime_6(i, step, vals, verbose<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a><span class="co">    Approximate f'(x) using a 5-point backward formula.</span></span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a><span class="co">    O(h^4) convergence, farthest step = 4.</span></span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a><span class="co">    Takes integer grid index i, step size h, and a dictionary of function values keyed by integer grid index.</span></span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a>    <span class="co"># fetch required f(x) values from the vals dictionary</span></span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a>        fm4 <span class="op">=</span> vals[i <span class="op">-</span> <span class="dv">4</span>]</span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a>        fm3 <span class="op">=</span> vals[i <span class="op">-</span> <span class="dv">3</span>]</span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a>        fm2 <span class="op">=</span> vals[i <span class="op">-</span> <span class="dv">2</span>]</span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a>        fm1 <span class="op">=</span> vals[i <span class="op">-</span> <span class="dv">1</span>]</span>
+<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a>        f0 <span class="op">=</span> vals[i]</span>
+<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a>    <span class="co"># return None if any of the required values are not found</span></span>
+<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">KeyError</span>:</span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> verbose:</span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"(6) Input values not found in vals dictionary."</span>)</span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> verbose:</span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"(6) is valid."</span>)</span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a>    <span class="co"># approximate the derivative</span></span>
+<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (</span>
+<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a>        <span class="dv">25</span><span class="op">*</span>f0</span>
+<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span> <span class="dv">48</span><span class="op">*</span>fm1</span>
+<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> <span class="dv">36</span><span class="op">*</span>fm2</span>
+<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span> <span class="dv">16</span><span class="op">*</span>fm3</span>
+<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> <span class="dv">3</span><span class="op">*</span>fm4</span>
+<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">/</span> (<span class="dv">12</span> <span class="op">*</span> step)</span>
+<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fprime_7(i, step, vals, verbose<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a><span class="co">    Approximate f'(x) using a 5-point unbalanced formula flipped for negative h.</span></span>
+<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a><span class="co">    O(h^3) convergence, farthest step = -3.</span></span>
+<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a><span class="co">    Takes integer grid index i, step size h, and a dictionary of function values </span></span>
+<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a><span class="co">    keyed by integer grid index.</span></span>
+<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a>    <span class="co"># fetch required f(x) values from the vals dictionary</span></span>
+<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a>        fp1 <span class="op">=</span> vals[i <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a>        f0  <span class="op">=</span> vals[i]</span>
+<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a>        fm1 <span class="op">=</span> vals[i <span class="op">-</span> <span class="dv">1</span>]</span>
+<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a>        fm2 <span class="op">=</span> vals[i <span class="op">-</span> <span class="dv">2</span>]</span>
+<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a>        fm3 <span class="op">=</span> vals[i <span class="op">-</span> <span class="dv">3</span>]</span>
+<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a>    <span class="co"># return None if any of the required values are not found</span></span>
+<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">KeyError</span>:</span>
+<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> verbose:</span>
+<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"(7) Input values not found in vals dictionary."</span>)</span>
+<span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> verbose:</span>
+<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"(7) is valid."</span>)</span>
+<span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a>    <span class="co"># approximate the derivative</span></span>
+<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (</span>
+<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a>        <span class="dv">18</span> <span class="op">*</span> fp1 <span class="op">+</span> <span class="dv">5</span> <span class="op">*</span> f0 <span class="op">-</span> <span class="dv">18</span> <span class="op">*</span> fm1 <span class="op">-</span> <span class="dv">9</span> <span class="op">*</span> fm2 <span class="op">+</span> <span class="dv">4</span> <span class="op">*</span> fm3</span>
+<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">/</span> (<span class="dv">42</span> <span class="op">*</span> step)</span>
+<span id="cb3-208"><a href="#cb3-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a><span class="co"># define derive</span></span>
+<span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> derive(f_vals, x_0, x_start, step, candidate_functions, verbose<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a><span class="co">    Approximate f'(x_0) using the best candidate function from a set of candidate functions.</span></span>
+<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a><span class="co">    The best function is determined by maximizing the order of convergence and minimizing the furthest number of steps from x_0.</span></span>
+<span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a><span class="co">    In the event of a complete tie, the first function is chosen by max().</span></span>
+<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a><span class="co">    Takes the following parameters:</span></span>
+<span id="cb3-217"><a href="#cb3-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-218"><a href="#cb3-218" aria-hidden="true" tabindex="-1"></a><span class="co">    f_vals:</span></span>
+<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a><span class="co">        Dictionary of function values keyed by integer grid index.</span></span>
+<span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a><span class="co">    x_0:</span></span>
+<span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a><span class="co">        x-coordinate at which the derivative is wanted.</span></span>
+<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a><span class="co">    x_start:</span></span>
+<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a><span class="co">        x-coordinate corresponding to index 0.</span></span>
+<span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a><span class="co">    step:</span></span>
+<span id="cb3-228"><a href="#cb3-228" aria-hidden="true" tabindex="-1"></a><span class="co">        Grid spacing h.</span></span>
+<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a><span class="co">    candidate_functions:</span></span>
+<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a><span class="co">        Dictionary of the form:</span></span>
+<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a><span class="co">        {</span></span>
+<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a><span class="co">            number: [function, order_of_convergence, furthest_step]</span></span>
+<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a><span class="co">        }</span></span>
+<span id="cb3-235"><a href="#cb3-235" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb3-236"><a href="#cb3-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-237"><a href="#cb3-237" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> verbose:</span>
+<span id="cb3-238"><a href="#cb3-238" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Finding candidate functions for f'(</span><span class="sc">{</span>x_0<span class="sc">}</span><span class="ss">) approximation..."</span>)</span>
+<span id="cb3-239"><a href="#cb3-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert the actual x-coordinate to an integer grid index.</span></span>
+<span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="bu">round</span>((x_0 <span class="op">-</span> x_start) <span class="op">/</span> step)</span>
+<span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a>    candidate_approximations <span class="op">=</span> {}</span>
+<span id="cb3-244"><a href="#cb3-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-245"><a href="#cb3-245" aria-hidden="true" tabindex="-1"></a>    <span class="co"># attempt to compute an approximation for each candidate function</span></span>
+<span id="cb3-246"><a href="#cb3-246" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> func_num, func_info <span class="kw">in</span> candidate_functions.items():</span>
+<span id="cb3-247"><a href="#cb3-247" aria-hidden="true" tabindex="-1"></a>        approximation <span class="op">=</span> func_info[<span class="dv">0</span>](</span>
+<span id="cb3-248"><a href="#cb3-248" aria-hidden="true" tabindex="-1"></a>            i, step, f_vals, verbose</span>
+<span id="cb3-249"><a href="#cb3-249" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb3-250"><a href="#cb3-250" aria-hidden="true" tabindex="-1"></a>        <span class="co"># keep only the approximations that were successfully computed</span></span>
+<span id="cb3-251"><a href="#cb3-251" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> approximation <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb3-252"><a href="#cb3-252" aria-hidden="true" tabindex="-1"></a>            candidate_approximations[func_num] <span class="op">=</span> approximation</span>
+<span id="cb3-253"><a href="#cb3-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-254"><a href="#cb3-254" aria-hidden="true" tabindex="-1"></a>    <span class="co"># return None if no candidate functions were successfully computed</span></span>
+<span id="cb3-255"><a href="#cb3-255" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(candidate_approximations) <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb3-256"><a href="#cb3-256" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> verbose:</span>
+<span id="cb3-257"><a href="#cb3-257" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"No candidate functions found."</span>)</span>
+<span id="cb3-258"><a href="#cb3-258" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb3-259"><a href="#cb3-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-260"><a href="#cb3-260" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> verbose:</span>
+<span id="cb3-261"><a href="#cb3-261" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(</span>
+<span id="cb3-262"><a href="#cb3-262" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Finding the best candidate function "</span></span>
+<span id="cb3-263"><a href="#cb3-263" aria-hidden="true" tabindex="-1"></a>            <span class="st">"based on order of convergence &amp; most distant step..."</span></span>
+<span id="cb3-264"><a href="#cb3-264" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb3-265"><a href="#cb3-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-266"><a href="#cb3-266" aria-hidden="true" tabindex="-1"></a>    <span class="co"># create a subset of the functions dictionary containing only the valid candidate functions</span></span>
+<span id="cb3-267"><a href="#cb3-267" aria-hidden="true" tabindex="-1"></a>    valid_functions <span class="op">=</span> {</span>
+<span id="cb3-268"><a href="#cb3-268" aria-hidden="true" tabindex="-1"></a>        key: candidate_functions[key]</span>
+<span id="cb3-269"><a href="#cb3-269" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> key <span class="kw">in</span> candidate_approximations</span>
+<span id="cb3-270"><a href="#cb3-270" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-271"><a href="#cb3-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-272"><a href="#cb3-272" aria-hidden="true" tabindex="-1"></a>    <span class="co"># find the best function by maximizing order of convergence and minimizing the furthest step.</span></span>
+<span id="cb3-273"><a href="#cb3-273" aria-hidden="true" tabindex="-1"></a>    best_function <span class="op">=</span> <span class="bu">max</span>(</span>
+<span id="cb3-274"><a href="#cb3-274" aria-hidden="true" tabindex="-1"></a>        valid_functions,</span>
+<span id="cb3-275"><a href="#cb3-275" aria-hidden="true" tabindex="-1"></a>        key<span class="op">=</span><span class="kw">lambda</span> x: (</span>
+<span id="cb3-276"><a href="#cb3-276" aria-hidden="true" tabindex="-1"></a>            valid_functions[x][<span class="dv">1</span>],   <span class="co"># first maximize order of convergence.</span></span>
+<span id="cb3-277"><a href="#cb3-277" aria-hidden="true" tabindex="-1"></a>            <span class="op">-</span>valid_functions[x][<span class="dv">2</span>]   <span class="co"># for equal orders, minimize the furthest step.</span></span>
+<span id="cb3-278"><a href="#cb3-278" aria-hidden="true" tabindex="-1"></a>                                     <span class="co"># max() returns the first entry in the event of a complete tie.</span></span>
+<span id="cb3-279"><a href="#cb3-279" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb3-280"><a href="#cb3-280" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-281"><a href="#cb3-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-282"><a href="#cb3-282" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> verbose:</span>
+<span id="cb3-283"><a href="#cb3-283" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Best function: </span><span class="sc">{</span>best_function<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-284"><a href="#cb3-284" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(</span>
+<span id="cb3-285"><a href="#cb3-285" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f"Approximation: f'(</span><span class="sc">{</span>x_0<span class="sc">}</span><span class="ss">) = "</span></span>
+<span id="cb3-286"><a href="#cb3-286" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f"</span><span class="sc">{</span>candidate_approximations[best_function]<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb3-287"><a href="#cb3-287" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb3-288"><a href="#cb3-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-289"><a href="#cb3-289" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> candidate_approximations[best_function]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>From Project 5 - a function to calculate the <span class="math inline">\(n\)</span>th divided difference given a set of values, and a function to generate a Lagrange polynomial.</p>
+<div id="810a22c2" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">## divided differences</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> divided_diff(vals, x0, depth<span class="op">=</span><span class="dv">1</span>, mode<span class="op">=</span><span class="st">"base"</span>): <span class="co"># x0 == the index of x0</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">    A function to compute the divided difference of a set of points recursively.</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Takes a list of tuples vals = (x, f(x)), an integer x0 (representing the index of x0), and an integer depth as input.</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns the divided difference as a float.</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">    For Hermite mode, vals = (x, f(x), f'(x))</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> depth <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> x0 <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> x0 <span class="op">+</span> depth <span class="op">&gt;=</span> <span class="bu">len</span>(vals):</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Depth exceeds the maximum possible divided difference for this x0!"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> depth <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> vals[x0][<span class="dv">1</span>]</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> vals[x0 <span class="op">+</span> depth][<span class="dv">0</span>] <span class="op">==</span> vals[x0][<span class="dv">0</span>]:</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> mode.lower() <span class="op">==</span> <span class="st">"hermite"</span> <span class="kw">and</span> depth <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> vals[x0][<span class="dv">2</span>]</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Repeated x-values require Hermite mode with a first-order divided difference."</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        divided_diff(vals, x0 <span class="op">+</span> <span class="dv">1</span>, depth<span class="op">=</span>depth <span class="op">-</span> <span class="dv">1</span>, mode<span class="op">=</span>mode)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span> divided_diff(vals, x0, depth<span class="op">=</span>depth <span class="op">-</span> <span class="dv">1</span>, mode<span class="op">=</span>mode)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">/</span> (vals[x0 <span class="op">+</span> depth][<span class="dv">0</span>] <span class="op">-</span> vals[x0][<span class="dv">0</span>])</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co">## Lagrange interpolation</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co"># (modified to take a table of values as input instead of a function)</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> doLagrange(vals_table, interpolation_points, symb):</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="co">    A function to generate a Lagrange Polynomial that interpolates the specified points.</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="co">    Takes a table of values (x, f(x)) and a list of interpolation points as input.</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns a sympy expression representing the Lagrange polynomial.</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    interpolation_points <span class="op">=</span> <span class="bu">list</span>(interpolation_points)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    values_by_x <span class="op">=</span> {point[<span class="dv">0</span>]: point[<span class="dv">1</span>] <span class="cf">for</span> point <span class="kw">in</span> vals_table}</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Validate that the requested nodes are distinct and available in vals_table.</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(<span class="bu">set</span>(interpolation_points)) <span class="op">!=</span> <span class="bu">len</span>(interpolation_points):</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Interpolation points must be unique."</span>)</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> point <span class="kw">in</span> interpolation_points:</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> point <span class="kw">not</span> <span class="kw">in</span> values_by_x:</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Interpolation point </span><span class="sc">{</span>point<span class="sc">}</span><span class="ss"> not found in vals_table!"</span>)</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Keep the requested order for both divided differences and Newton basis terms.</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    selected_vals <span class="op">=</span> [(point, values_by_x[point]) <span class="cf">for</span> point <span class="kw">in</span> interpolation_points]</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Build the Lagrange polynomial from the selected nodes.</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    lagrange <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(selected_vals)):</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>        dd <span class="op">=</span> divided_diff(selected_vals, <span class="dv">0</span>, depth<span class="op">=</span>i)</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>            lagrange <span class="op">+=</span> dd</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>            prod_term <span class="op">=</span> sp.Mul(</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>                <span class="op">*</span>(symb <span class="op">-</span> interpolation_points[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i))</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>            lagrange <span class="op">+=</span> dd <span class="op">*</span> prod_term</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lagrange</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="dohermite" class="level3">
+<h3 class="anchored" data-anchor-id="dohermite">doHermite</h3>
+<p>Next, we will define a function that takes a table of values as input and generates a Hermite polynomial approximation of the unknown function that produced those values.</p>
+<div id="cf836237" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Hermite interpolation</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> doHermite(vals_table, interpolation_points, symb):</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Function to generate a Hermite polynomial that interpolates the x-values listed in interpolation_points.</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns a sympy expression.</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">    vals_table must contain evenly spaced data.</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># step 1: get the numeric derivatives of each interpolation point using derive()</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># derive() will be able to use all known points (those provided in vals_table, which must have evenly spaced data)</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># derive() parameter setup:</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    x_start <span class="op">=</span> vals_table[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    step <span class="op">=</span> vals_table[<span class="dv">1</span>][<span class="dv">0</span>] <span class="op">-</span> x_start <span class="co"># x1 - x0</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    derive_table <span class="op">=</span> {i: vals_table[i][<span class="dv">1</span>] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(vals_table))} <span class="co"># (verified working)</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># initialize the interpolation vals table which we will build the Hermite from (verified working)</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    interpolation_vals <span class="op">=</span> [] <span class="co"># (x, f(x), f'(x))</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> point <span class="kw">in</span> vals_table:</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> point[<span class="dv">0</span>] <span class="kw">in</span> interpolation_points:</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>            x_i <span class="op">=</span> point[<span class="dv">0</span>]</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>            f_x_i <span class="op">=</span> point[<span class="dv">1</span>]</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>            f_prime_x_i <span class="op">=</span> derive(derive_table, x_i, x_start, step, candidate_functions<span class="op">=</span>function_dict) <span class="co"># candidate functions are globally defined</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>            interpolation_vals.append((x_i, f_x_i, f_prime_x_i))</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># convert to z-index for Hermite (verified working)</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    interpolation_vals <span class="op">=</span> [interpolation_vals[i<span class="op">//</span><span class="dv">2</span>] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(interpolation_vals)<span class="op">*</span><span class="dv">2</span>)]</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    hermite <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(interpolation_vals)):</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>        dd <span class="op">=</span> divided_diff(interpolation_vals, <span class="dv">0</span>, i, mode<span class="op">=</span><span class="st">"hermite"</span>)</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>            hermite <span class="op">+=</span> dd</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>            prod_terms <span class="op">=</span> [(symb <span class="op">-</span> interpolation_vals[j][<span class="dv">0</span>]) <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i)]</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>            prod_term <span class="op">=</span> sp.Mul(<span class="op">*</span>prod_terms)</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>            hermite <span class="op">+=</span> dd<span class="op">*</span>prod_term</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> hermite</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="dospline" class="level3">
+<h3 class="anchored" data-anchor-id="dospline">doSpline</h3>
+<p>We will also define a function that takes the same inputs and generates a cubic spline instead.</p>
+<div id="f8bf9466" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> doSpline(vals_table, interpolation_points, symb):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Generate a natural boundary cubic spline through the selected x-values in vals_table.</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns a sympy Piecewise expression.</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Validate that the requested nodes are distinct and available in the data.</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(interpolation_points) <span class="op">&lt;</span> <span class="dv">2</span>:</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"At least two interpolation points are required."</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(<span class="bu">set</span>(interpolation_points)) <span class="op">!=</span> <span class="bu">len</span>(interpolation_points):</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Interpolation points must be unique."</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    values_by_x <span class="op">=</span> {point[<span class="dv">0</span>]: point[<span class="dv">1</span>] <span class="cf">for</span> point <span class="kw">in</span> vals_table}</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    missing_points <span class="op">=</span> [point <span class="cf">for</span> point <span class="kw">in</span> interpolation_points <span class="cf">if</span> point <span class="kw">not</span> <span class="kw">in</span> values_by_x]</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> missing_points:</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Interpolation points not found in vals_table: </span><span class="sc">{</span>missing_points<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sort the selected data and compute interval widths.</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    selected <span class="op">=</span> <span class="bu">sorted</span>(</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        ((point, values_by_x[point]) <span class="cf">for</span> point <span class="kw">in</span> interpolation_points),</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        key<span class="op">=</span><span class="kw">lambda</span> point: point[<span class="dv">0</span>],</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    x_values <span class="op">=</span> np.asarray([<span class="bu">float</span>(point[<span class="dv">0</span>]) <span class="cf">for</span> point <span class="kw">in</span> selected])</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    a_values <span class="op">=</span> np.asarray([<span class="bu">float</span>(point[<span class="dv">1</span>]) <span class="cf">for</span> point <span class="kw">in</span> selected])</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    h_values <span class="op">=</span> np.diff(x_values) <span class="co"># hj = xj+1 - xj</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.<span class="bu">any</span>(h_values <span class="op">&lt;=</span> <span class="dv">0</span>):</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Interpolation x-values must be distinct and increasing."</span>)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    interval_count <span class="op">=</span> <span class="bu">len</span>(h_values) <span class="co"># how many segments we'll have (n-1)</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    interior_count <span class="op">=</span> interval_count <span class="op">-</span> <span class="dv">1</span> <span class="co"># how many cs we need to solve for in the matrix (n-2)</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Natural boundary conditions set the first and last c coefficients to zero.</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    c_values <span class="op">=</span> np.zeros(interval_count <span class="op">+</span> <span class="dv">1</span>) <span class="co"># initialize all cs to 0</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> interior_count <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Build the tridiagonal system for the interior c coefficients.</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>        matrix <span class="op">=</span> np.zeros((interior_count, interior_count)) <span class="co"># start with all 0s so we can assign to matrix positions</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>        rhs <span class="op">=</span> np.zeros(interior_count)</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> row <span class="kw">in</span> <span class="bu">range</span>(interior_count): <span class="co"># make a n-2xn-2 square matrix</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>            j <span class="op">=</span> row <span class="op">+</span> <span class="dv">1</span> <span class="co"># j=1 to account for the 0-based indexing of python</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>            matrix[row, row] <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> (h_values[j <span class="op">-</span> <span class="dv">1</span>] <span class="op">+</span> h_values[j]) <span class="co"># assign the diagonal</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> row <span class="op">&gt;</span> <span class="dv">0</span>: <span class="co"># assign the lower diagonal (all rows but the first)</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>                matrix[row, row <span class="op">-</span> <span class="dv">1</span>] <span class="op">=</span> h_values[j <span class="op">-</span> <span class="dv">1</span>]</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> row <span class="op">&lt;</span> interior_count <span class="op">-</span> <span class="dv">1</span>: <span class="co"># assign the upper diagonal (all rows but the last)</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>                matrix[row, row <span class="op">+</span> <span class="dv">1</span>] <span class="op">=</span> h_values[j]</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>            rhs[row] <span class="op">=</span> ( <span class="co"># set the corresponding right side row</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>                <span class="dv">3</span> <span class="op">*</span> (a_values[j <span class="op">+</span> <span class="dv">1</span>] <span class="op">-</span> a_values[j]) <span class="op">/</span> h_values[j]</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>                <span class="op">-</span> <span class="dv">3</span> <span class="op">*</span> (a_values[j] <span class="op">-</span> a_values[j <span class="op">-</span> <span class="dv">1</span>]) <span class="op">/</span> h_values[j <span class="op">-</span> <span class="dv">1</span>]</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>        c_values[<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> np.linalg.solve(matrix, rhs) <span class="co"># only overwrite the interior cs - leave the endpoints as 0 per boundary</span></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>                                                      <span class="co"># linalg.solve uses LU decomposition</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute b and d for each interval from the solved c coefficients.</span></span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>    <span class="co"># use array operations rather than solving individually</span></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>    b_values <span class="op">=</span> (a_values[<span class="dv">1</span>:] <span class="op">-</span> a_values[:<span class="op">-</span><span class="dv">1</span>]) <span class="op">/</span> h_values <span class="op">-</span> (</span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>        h_values <span class="op">*</span> (<span class="dv">2</span> <span class="op">*</span> c_values[:<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> c_values[<span class="dv">1</span>:]) <span class="op">/</span> <span class="dv">3</span></span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>    d_values <span class="op">=</span> (c_values[<span class="dv">1</span>:] <span class="op">-</span> c_values[:<span class="op">-</span><span class="dv">1</span>]) <span class="op">/</span> (<span class="dv">3</span> <span class="op">*</span> h_values)</span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Assemble the cubics functions as a piecewise symbolic expression.</span></span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>    pieces <span class="op">=</span> []</span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(interval_count):</span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>        local_x <span class="op">=</span> symb <span class="op">-</span> selected[j][<span class="dv">0</span>]</span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>        polynomial <span class="op">=</span> (</span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>            a_values[j]</span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> b_values[j] <span class="op">*</span> local_x</span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> c_values[j] <span class="op">*</span> local_x<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> d_values[j] <span class="op">*</span> local_x<span class="op">**</span><span class="dv">3</span></span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>        condition <span class="op">=</span> (symb <span class="op">&gt;=</span> selected[j][<span class="dv">0</span>]) <span class="op">&amp;</span> (symb <span class="op">&lt;=</span> selected[j <span class="op">+</span> <span class="dv">1</span>][<span class="dv">0</span>])</span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>        pieces.append((polynomial, condition))</span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sp.Piecewise(<span class="op">*</span>pieces, (sp.nan, <span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<p>Now that we have defined all of the functions we will need, we can use them to generate three different approximations of <span class="math inline">\(REG(z)\)</span>.</p>
+<div id="f848c45d" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># candidate functions dictionary, for derive()</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>function_dict <span class="op">=</span> {</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>: [ fprime_1, <span class="dv">2</span>, <span class="dv">1</span>], <span class="co"># {number: [function, order of convergence, # of steps to furthest point]}</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span>: [ fprime_2, <span class="dv">1</span>, <span class="dv">3</span>],</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="dv">3</span>: [ fprime_3, <span class="dv">4</span>, <span class="dv">2</span>],</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="dv">4</span>: [ fprime_4, <span class="dv">4</span>, <span class="dv">4</span>],</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="dv">5</span>: [ fprime_5, <span class="dv">3</span>, <span class="dv">3</span>],</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="dv">6</span>: [ fprime_6, <span class="dv">4</span>, <span class="dv">4</span>],</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="dv">7</span>: [ fprime_7, <span class="dv">3</span>, <span class="dv">3</span>]</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>corn_vals <span class="op">=</span> [ <span class="co"># checked previously: derive() does return the correct derivatives</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">0</span>, <span class="dv">0</span>),   <span class="co"># interpolation_vals fills correctly</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span>, <span class="fl">0.06</span>),</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">2</span>, <span class="fl">0.18</span>),</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">3</span>, <span class="fl">0.34</span>),</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">4</span>, <span class="fl">0.38</span>),</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">5</span>, <span class="fl">0.35</span>),</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">6</span>, <span class="fl">0.3</span>),</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">7</span>, <span class="fl">0.225</span>),</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">8</span>, <span class="fl">0.12</span>),</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">9</span>, <span class="fl">0.035</span>),</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">10</span>, <span class="dv">0</span>)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> sp.symbols(<span class="st">"x"</span>)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>ips <span class="op">=</span> <span class="bu">range</span>(<span class="dv">11</span>)</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>hermite <span class="op">=</span> doHermite(corn_vals, ips, x)</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>lagrange <span class="op">=</span> doLagrange(corn_vals, ips, x) </span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>spline <span class="op">=</span> doSpline(corn_vals, ips, x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Now that we have all of the approximations, we can plot them on the same axes:</p>
+<div id="de92b1bc" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x_vals <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>l_vals <span class="op">=</span> evalExpression(lagrange, x, x_vals)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>h_vals <span class="op">=</span> evalExpression(hermite, x, x_vals)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>s_vals <span class="op">=</span> evalExpression(spline, x, x_vals)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">5.5</span>))</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>plt.scatter(<span class="bu">range</span>(<span class="bu">len</span>(corn_vals)), [val[<span class="dv">1</span>] <span class="cf">for</span> val <span class="kw">in</span> corn_vals], label<span class="op">=</span><span class="st">"Measured Data"</span>, color<span class="op">=</span><span class="st">"gray"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>plt.plot(x_vals, l_vals, label<span class="op">=</span><span class="st">"Lagrange Polynomial"</span>, color <span class="op">=</span> <span class="st">"forestgreen"</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>plt.plot(x_vals, h_vals, label<span class="op">=</span><span class="st">"Hermite Polynomial"</span>, color <span class="op">=</span> <span class="st">"darkorange"</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>plt.plot(x_vals, s_vals, label<span class="op">=</span><span class="st">"Cubic spline"</span>, color <span class="op">=</span> <span class="st">"crimson"</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Polynomial approximations of REG(z)"</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"z (mm)"</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"REG(z) (1/hr)"</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="p7_files/figure-html/cell-9-output-1.png" width="674" height="486" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We notice something strange here - <code>hermite</code>, the Hermite polynomial approximation of <span class="math inline">\(REG(z)\)</span>, has a negative value between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, which shouldn’t be physically possible since <span class="math inline">\(REG(z)\)</span> represents corn root growth. This issue may be a result of <code>hermite</code>’s high degree. We can test this hypothesis by instead having <code>hermite</code> interpolate every other point.</p>
+<div id="f123edfd" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>hermite_5 <span class="op">=</span> doHermite(corn_vals, [<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">10</span>], x)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>h5_vals <span class="op">=</span> evalExpression(hermite_5, x, x_vals)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">5.5</span>))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>plt.scatter(<span class="bu">range</span>(<span class="bu">len</span>(corn_vals)), [val[<span class="dv">1</span>] <span class="cf">for</span> val <span class="kw">in</span> corn_vals], label<span class="op">=</span><span class="st">"Measured Data"</span>, color<span class="op">=</span><span class="st">"gray"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>plt.plot(x_vals, l_vals, label<span class="op">=</span><span class="st">"Lagrange Polynomial"</span>, color <span class="op">=</span> <span class="st">"forestgreen"</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>plt.plot(x_vals, h5_vals, label<span class="op">=</span><span class="st">"Hermite Polynomial (Every Other Point)"</span>, color <span class="op">=</span> <span class="st">"darkorange"</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>plt.plot(x_vals, s_vals, label<span class="op">=</span><span class="st">"Cubic spline"</span>, color <span class="op">=</span> <span class="st">"crimson"</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Polynomial approximations of REG(z)"</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"z (mm)"</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"REG(z) (1/hr)"</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="p7_files/figure-html/cell-10-output-1.png" width="672" height="486" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>That’s better. This Hermite polynomial doesn’t interpolate every point, but its approximation remains within the realm of possibility, unlike the previous iteration. Looking at this plot, there are a few things to notice. First, all three approximations follow the general shape of the data over most of the interval. The Lagrange and Hermite polynomials have some odd behavior in the intervals adjacent to an endpoint - on <span class="math inline">\([0, 1]\)</span>, the Lagrange estimate seems to jump oddly high. The Hermite estimate seems to similarly read high, though to a lesser degree. On <span class="math inline">\([9, 10]\)</span>, the Lagrange estimate seems to read slightly high again. The Hermite estimate, however, seems to read slightly low. Only the cubic spline seems to be immune to these endpoint-interval oscillations.</p>
+<p>Since we don’t have an actual function <span class="math inline">\(REG(z)\)</span> to compare with our approximations, we will have to make do by comparing them to one another. The plot below shows an absolute pairwise comparison of our three approximations.</p>
+<div id="3ae46cb0" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="fl">5.5</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x_vals, np.<span class="bu">abs</span>(np.array(l_vals)<span class="op">-</span>np.array(h5_vals)), label<span class="op">=</span><span class="st">"Lagrange - Hermite"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x_vals, np.<span class="bu">abs</span>(np.array(l_vals)<span class="op">-</span>np.array(s_vals)), label<span class="op">=</span><span class="st">"Lagrange - spline"</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>plt.plot(x_vals, np.<span class="bu">abs</span>(np.array(h5_vals)<span class="op">-</span>np.array(s_vals)), label<span class="op">=</span><span class="st">"Hermite - spline"</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Pairwise absolute differences between approximation methods"</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"z (mm)"</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"REG(z) (1/hr)"</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="p7_files/figure-html/cell-11-output-1.png" width="672" height="486" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This plot reaffirms some things we already noticed in the earlier graph. First, we can see that there are very few differences between the three approximations in the center of the interval, specifically around <span class="math inline">\([4,6]\)</span>. We also see that the Hermite polynomial and cubic spline seem to be the most similar approximations overall, with the differences in their values remaining less than <span class="math inline">\(0.025\)</span> over the entire interval. The Lagrange polynomial and the cubic spline are the most different at the start of the interval, but then drop to having near-zero difference over <span class="math inline">\([3,9]\)</span>. We see the largest differences between approximations near the endpoints of the interval, where the Lagrange and Hermite approximations seemed to read oddly high or low.</p>
+<p>We can also see how the different approximations behave outside the interval.</p>
+<div id="bf219838" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>wide_vals <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">2</span>, <span class="dv">12</span>, <span class="dv">300</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">5.5</span>))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(<span class="bu">range</span>(<span class="bu">len</span>(corn_vals)), [val[<span class="dv">1</span>] <span class="cf">for</span> val <span class="kw">in</span> corn_vals], label<span class="op">=</span><span class="st">"Measured Data"</span>, color<span class="op">=</span><span class="st">"gray"</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>plt.plot(wide_vals, evalExpression(lagrange, x, wide_vals), label<span class="op">=</span><span class="st">"Lagrange Polynomial"</span>, color <span class="op">=</span> <span class="st">"forestgreen"</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>plt.plot(wide_vals, evalExpression(hermite_5, x, wide_vals), label<span class="op">=</span><span class="st">"Hermite Polynomial (Every Other Point)"</span>, color <span class="op">=</span> <span class="st">"darkorange"</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>plt.plot(wide_vals, evalExpression(spline, x, wide_vals), label<span class="op">=</span><span class="st">"Cubic spline"</span>, color <span class="op">=</span> <span class="st">"crimson"</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Polynomial approximations of REG(z)"</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"z (mm)"</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"REG(z) (1/hr)"</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="p7_files/figure-html/cell-12-output-1.png" width="670" height="486" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>A few things are apparent here. Firstly, outside of <span class="math inline">\([0, 10]\)</span>, the spline estimate of <span class="math inline">\(REG(z)\)</span> simply does not exist. The other two polynomials rapidly move away from 0, becoming several orders of magnitude larger than any measured value as soon as 1 unit outside the interval. What’s more, the Lagrange polynomial’s value is negative outside of the interval, something that shouldn’t be physically possible. The Hermite polynomial is negative beyond <span class="math inline">\(z=10\)</span>, but remains positive before <span class="math inline">\(z=0\)</span> - however, the magnitude of the estimate below <span class="math inline">\(z\approx-1\)</span> remains greater than that of the actual measured values.</p>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<p>Out of the three approximations, I would argue that the cubic spline is the best estimator within <span class="math inline">\([0,10]\)</span> because it is smooth, remains within physically possible values, and shows little endpoint distortion. It is, however, limited to use within <span class="math inline">\([0,10]\)</span>. The Lagrange and Hermite polynomials provide estimates beyond <span class="math inline">\([0,10]\)</span>, but neither should be used confidently for extrapolation since their estimates do not make physical sense beyond the interval. The Lagrange polynomial becomes negative on both sides of the interval, while the Hermite polynomial becomes negative beyond <span class="math inline">\(z=10\)</span> and grows unrealistically large below <span class="math inline">\(z\approx-1\)</span>.</p>
+<p>The actual errors in these approximations cannot be determined because <span class="math inline">\(REG(z)\)</span> remains unknown. However, the pairwise differences indicate that the Hermite and spline approximations agree most closely, differing by less than <span class="math inline">\(0.025\)</span> throughout <span class="math inline">\([0,10]\)</span>. The largest differences occur near the endpoints, where the polynomial approximations visually seem to be too high or too low.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>The cubic spline is the most appropriate approximation of <span class="math inline">\(REG(z)\)</span> on <span class="math inline">\([0,10]\)</span> because it follows the measured data smoothly and lacks the unusual endpoint behavior of the polynomial methods. The Lagrange and Hermite polynomials can estimate values outside the interval, but their extrapolated values become increasingly unrealistic. Overall, estimates should be limited to the spline method on <span class="math inline">\([0,10]\)</span> unless additional information about <span class="math inline">\(REG(z)\)</span> becomes available.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/rrtullis\.github\.io\/numcomp_project_site\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
