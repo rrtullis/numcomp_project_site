@@ -207,6 +207,7 @@ window.Quarto = {
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -494,14 +495,14 @@ window.Quarto = {
 <section id="computer-program" class="level2">
 <h2 class="anchored" data-anchor-id="computer-program">Computer Program</h2>
 <p>To begin with the computer program portion of this assignment, we will import several tools from previous projects. Further information on each can be found in their respective projects.</p>
-<div id="130c42af" class="cell" data-execution_count="1">
+<div id="b5944c4f" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># package imports</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>From Project 1 - a helper function to easily evaluate expressions.</p>
-<div id="68c04119" class="cell" data-execution_count="2">
+<div id="3c5a9643" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> evalExpression(f, symb, input_vals):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Evaluates the provided single-variable expression for a list of input values. Takes a symbolic expression f, symbol sym, and array-like input_vals as input. Returns a list of the output values.</span></span>
@@ -509,7 +510,7 @@ window.Quarto = {
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [f.subs(symb, val) <span class="cf">for</span> val <span class="kw">in</span> input_vals]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>From Project 3 - a function to perform numerical differentiation, and each of the candidate function ‘stencils’ it may use.</p>
-<div id="59e67a6f" class="cell" data-execution_count="3">
+<div id="4cdb3677" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Derive</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># define all candidate functions</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fprime_1(i, step, vals, verbose<span class="op">=</span><span class="va">False</span>):</span>
@@ -801,7 +802,7 @@ window.Quarto = {
 <span id="cb3-289"><a href="#cb3-289" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> candidate_approximations[best_function]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>From Project 5 - a function to calculate the <span class="math inline">\(n\)</span>th divided difference given a set of values, and a function to generate a Lagrange polynomial.</p>
-<div id="810a22c2" class="cell" data-execution_count="4">
+<div id="948f8bbc" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">## divided differences</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> divided_diff(vals, x0, depth<span class="op">=</span><span class="dv">1</span>, mode<span class="op">=</span><span class="st">"base"</span>): <span class="co"># x0 == the index of x0</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
@@ -867,7 +868,7 @@ window.Quarto = {
 <section id="dohermite" class="level3">
 <h3 class="anchored" data-anchor-id="dohermite">doHermite</h3>
 <p>Next, we will define a function that takes a table of values as input and generates a Hermite polynomial approximation of the unknown function that produced those values.</p>
-<div id="cf836237" class="cell" data-execution_count="5">
+<div id="cc3f4afa" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Hermite interpolation</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> doHermite(vals_table, interpolation_points, symb):</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
@@ -913,7 +914,7 @@ window.Quarto = {
 <section id="dospline" class="level3">
 <h3 class="anchored" data-anchor-id="dospline">doSpline</h3>
 <p>We will also define a function that takes the same inputs and generates a cubic spline instead.</p>
-<div id="f8bf9466" class="cell" data-execution_count="6">
+<div id="9e39f69e" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> doSpline(vals_table, interpolation_points, symb):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Generate a natural boundary cubic spline through the selected x-values in vals_table.</span></span>
@@ -993,7 +994,7 @@ window.Quarto = {
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
 <p>Now that we have defined all of the functions we will need, we can use them to generate three different approximations of <span class="math inline">\(REG(z)\)</span>.</p>
-<div id="f848c45d" class="cell" data-execution_count="7">
+<div id="ddded77d" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># candidate functions dictionary, for derive()</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>function_dict <span class="op">=</span> {</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>: [ fprime_1, <span class="dv">2</span>, <span class="dv">1</span>], <span class="co"># {number: [function, order of convergence, # of steps to furthest point]}</span></span>
@@ -1027,7 +1028,7 @@ window.Quarto = {
 <span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>spline <span class="op">=</span> doSpline(corn_vals, ips, x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now that we have all of the approximations, we can plot them on the same axes:</p>
-<div id="de92b1bc" class="cell" data-execution_count="8">
+<div id="7eccddee" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x_vals <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>l_vals <span class="op">=</span> evalExpression(lagrange, x, x_vals)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>h_vals <span class="op">=</span> evalExpression(hermite, x, x_vals)</span>
@@ -1052,7 +1053,7 @@ window.Quarto = {
 </div>
 </div>
 <p>We notice something strange here - <code>hermite</code>, the Hermite polynomial approximation of <span class="math inline">\(REG(z)\)</span>, has a negative value between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, which shouldn’t be physically possible since <span class="math inline">\(REG(z)\)</span> represents corn root growth. This issue may be a result of <code>hermite</code>’s high degree. We can test this hypothesis by instead having <code>hermite</code> interpolate every other point.</p>
-<div id="f123edfd" class="cell" data-execution_count="9">
+<div id="35a49161" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>hermite_5 <span class="op">=</span> doHermite(corn_vals, [<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">10</span>], x)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>h5_vals <span class="op">=</span> evalExpression(hermite_5, x, x_vals)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1076,7 +1077,7 @@ window.Quarto = {
 </div>
 <p>That’s better. This Hermite polynomial doesn’t interpolate every point, but its approximation remains within the realm of possibility, unlike the previous iteration. Looking at this plot, there are a few things to notice. First, all three approximations follow the general shape of the data over most of the interval. The Lagrange and Hermite polynomials have some odd behavior in the intervals adjacent to an endpoint - on <span class="math inline">\([0, 1]\)</span>, the Lagrange estimate seems to jump oddly high. The Hermite estimate seems to similarly read high, though to a lesser degree. On <span class="math inline">\([9, 10]\)</span>, the Lagrange estimate seems to read slightly high again. The Hermite estimate, however, seems to read slightly low. Only the cubic spline seems to be immune to these endpoint-interval oscillations.</p>
 <p>Since we don’t have an actual function <span class="math inline">\(REG(z)\)</span> to compare with our approximations, we will have to make do by comparing them to one another. The plot below shows an absolute pairwise comparison of our three approximations.</p>
-<div id="3ae46cb0" class="cell" data-execution_count="10">
+<div id="e767bad9" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="fl">5.5</span>))</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x_vals, np.<span class="bu">abs</span>(np.array(l_vals)<span class="op">-</span>np.array(h5_vals)), label<span class="op">=</span><span class="st">"Lagrange - Hermite"</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x_vals, np.<span class="bu">abs</span>(np.array(l_vals)<span class="op">-</span>np.array(s_vals)), label<span class="op">=</span><span class="st">"Lagrange - spline"</span>)</span>
@@ -1098,7 +1099,7 @@ window.Quarto = {
 </div>
 <p>This plot reaffirms some things we already noticed in the earlier graph. First, we can see that there are very few differences between the three approximations in the center of the interval, specifically around <span class="math inline">\([4,6]\)</span>. We also see that the Hermite polynomial and cubic spline seem to be the most similar approximations overall, with the differences in their values remaining less than <span class="math inline">\(0.025\)</span> over the entire interval. The Lagrange polynomial and the cubic spline are the most different at the start of the interval, but then drop to having near-zero difference over <span class="math inline">\([3,9]\)</span>. We see the largest differences between approximations near the endpoints of the interval, where the Lagrange and Hermite approximations seemed to read oddly high or low.</p>
 <p>We can also see how the different approximations behave outside the interval.</p>
-<div id="bf219838" class="cell" data-execution_count="11">
+<div id="b044ef45" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>wide_vals <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">2</span>, <span class="dv">12</span>, <span class="dv">300</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">5.5</span>))</span>
@@ -1129,6 +1130,13 @@ window.Quarto = {
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>The cubic spline is the most appropriate approximation of <span class="math inline">\(REG(z)\)</span> on <span class="math inline">\([0,10]\)</span> because it follows the measured data smoothly and lacks the unusual endpoint behavior of the polynomial methods. The Lagrange and Hermite polynomials can estimate values outside the interval, but their extrapolated values become increasingly unrealistic. Overall, estimates should be limited to the spline method on <span class="math inline">\([0,10]\)</span> unless additional information about <span class="math inline">\(REG(z)\)</span> becomes available.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>Epperson, James F. (2013). <em>An Introduction to Numerical Methods and Analysis</em>. John Wiley &amp; Sons.</p>
+<p>Ayyub, Bilal M., and Richard H. McCuen. (1995). <em>Numerical Methods for Engineers</em>. Prentice-Hall, Inc.</p>
+<p>Brin, Leon. (2021). <em>Tea Time Numerical Analysis</em>. Leon Q. Brin.</p>
+<p>Wiegers, B. S., Cheer, A. Y., &amp; Silk, W. K. (2009). Modeling the hydraulics of root growth in three dimensions with phloem water sources. <em>Plant Physiology</em>, <em>150</em>(4), 2092–2103.</p>
 
 
 </section>

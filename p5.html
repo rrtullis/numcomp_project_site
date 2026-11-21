@@ -391,14 +391,14 @@ Apart from <span class="math inline">\(x\)</span>, the term that will bound <spa
 <h2 class="anchored" data-anchor-id="computer-program">Computer Program</h2>
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
-<div id="492c53e3" class="cell" data-execution_count="1">
+<div id="06ab10d4" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tabulate <span class="im">import</span> tabulate</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>For the computer program portion of this project, we will first borrow some code for computing Taylor Polynomials and evaluating expressions from a previous project.</p>
-<div id="2231135d" class="cell" data-execution_count="2">
+<div id="35640ff9" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> doTaylor(func, symb, deg, x0):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">    A function to generate a Taylor Polynomial with a specified degree and x0. Takes a symbolic expression func, symbol symb, integer degree deg, and number x0 as input. Returns a symbolic expression.</span></span>
@@ -423,7 +423,7 @@ Apart from <span class="math inline">\(x\)</span>, the term that will bound <spa
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> true_vals <span class="op">-</span> est_vals</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Next, we will create a function to generate Lagrange Polynomials using divided differences. First, the function to compute the divided differences recursively:</p>
-<div id="f0ec178c" class="cell" data-execution_count="3">
+<div id="9ce36b24" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> divided_diff(vals, x0, depth<span class="op">=</span><span class="dv">1</span>): <span class="co"># x0 == the index of x0</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">    A function to compute the divided difference of a set of points recursively. Takes a list of tuples vals = (x, f(x)), an integer x0 (representing the index of x0), and an integer depth as input. Returns the divided difference as a float.</span></span>
@@ -444,7 +444,7 @@ Apart from <span class="math inline">\(x\)</span>, the term that will bound <spa
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Next, we will create a function to generate Lagrange Polynomials using the divided differences computed above.</p>
-<div id="ea741004" class="cell" data-execution_count="4">
+<div id="38477b94" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> doLagrange(func, symb, deg, points):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">    A function to generate a Lagrange Polynomial with a specified degree and interpolation points. Takes a symbolic expression func, symbol symb, integer degree deg, and list of x values to interpolate as input. Returns a symbolic expression.</span></span>
@@ -483,7 +483,7 @@ Apart from <span class="math inline">\(x\)</span>, the term that will bound <spa
 <section id="computation" class="level3">
 <h3 class="anchored" data-anchor-id="computation">Computation</h3>
 <p>Now that we’ve defined the functions to compute Taylor and Lagrange Polynomials, we can use them to compute <span class="math inline">\(M_3(x)\)</span>, <span class="math inline">\(T_3(x)\)</span>, and <span class="math inline">\(L_3(x)\)</span>.</p>
-<div id="2c132b0c" class="cell" data-execution_count="5">
+<div id="500737e2" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first, define the symbolic variable and the function to approximate</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> sp.symbols(<span class="st">"x"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> sp.exp(x)</span>
@@ -498,7 +498,7 @@ Apart from <span class="math inline">\(x\)</span>, the term that will bound <spa
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
 <p>Now that we have generated the polynomials, we can evaluate them and examine their errors at a few interesting <span class="math inline">\(x\)</span> values.</p>
-<div id="de3ba03f" class="cell" data-execution_count="6">
+<div id="08079bae" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># list the key x values we want to evaluate the polynomials at</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>x_values <span class="op">=</span> [<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>, <span class="dv">15</span>]</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -539,7 +539,7 @@ Apart from <span class="math inline">\(x\)</span>, the term that will bound <spa
 </div>
 </div>
 <p>All three functions do a decent job of approximating <span class="math inline">\(f(x)\)</span> on <span class="math inline">\([0,2]\)</span>. <span class="math inline">\(L_3(x)\)</span> appears to be the best performer for the in-interval points we’ve tested here, partly because it interpolates most of them. As for the points outside the interval, <span class="math inline">\(T_3(x)\)</span> struggles the most out of the three at <span class="math inline">\(x=-1\)</span>, likely because its only interpolating point exists at <span class="math inline">\(x=2\)</span>, the farthest of all three functions. All three functions have similarly massive absolute errors of comparable magnitude at <span class="math inline">\(x=15\)</span>, far outside the interval. However, due to the rapidly increasing nature of <span class="math inline">\(f(x)\)</span>, the absolute errors are somewhat misleading compared to relative errors for large <span class="math inline">\(x\)</span> values.</p>
-<div id="a4437208" class="cell" data-execution_count="7">
+<div id="3381954e" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the relative errors for each polynomial</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>M3_relative_errors <span class="op">=</span> np.<span class="bu">abs</span>(M3_errors <span class="op">/</span> f_values)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>T3_relative_errors <span class="op">=</span> np.<span class="bu">abs</span>(T3_errors <span class="op">/</span> f_values)</span>
@@ -572,7 +572,7 @@ Apart from <span class="math inline">\(x\)</span>, the term that will bound <spa
 </div>
 <p>Looking at the relative errors, we can see that, despite having massive absolute errors at <span class="math inline">\(x=15\)</span>, all three functions have relative errors <span class="math inline">\(\approx 1\)</span>, indicating that the errors are about the same size as the actual function value. While this isn’t great, it puts into perspective how meaningful some seemingly small absolute errors can be - <span class="math inline">\(T_3(-1)\)</span>’s absolute error of <span class="math inline">\(15.146\)</span> is more than 41 times the actual function value.</p>
 <p>For a better representation of performance on the intended interval, we can plot all four functions on the same set of axes over <span class="math inline">\([0, 2]\)</span> to visualize their performance.</p>
-<div id="61071d99" class="cell" data-execution_count="8">
+<div id="0010f7ef" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a range of x values for plotting</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>x_plot <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">100</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -597,7 +597,7 @@ Apart from <span class="math inline">\(x\)</span>, the term that will bound <spa
 </div>
 </div>
 <p>Looking at the plot, it appears that <span class="math inline">\(M_3(x)\)</span> is very close to <span class="math inline">\(f(x)\)</span> on the left side of the interval, while <span class="math inline">\(T_3(x)\)</span> is very close to <span class="math inline">\(f(x)\)</span> on the right side of the interval. <span class="math inline">\(L_3(x)\)</span> appears to be a good approximation across the entire interval. We can further verify this by plotting the absolute errors of each polynomial over <span class="math inline">\([0, 2]\)</span>.</p>
-<div id="d2a1e350" class="cell" data-execution_count="9">
+<div id="008c44f1" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the absolute errors of each polynomial</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>ax.plot(x_plot, np.<span class="bu">abs</span>(getErrors(f, M3, x, x_plot)), label<span class="op">=</span><span class="st">"Error M3"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
@@ -619,7 +619,7 @@ Apart from <span class="math inline">\(x\)</span>, the term that will bound <spa
 </div>
 <p>As we expected from the previous plot, <span class="math inline">\(M_3(x)\)</span> has the smallest error on the left side of the interval, <span class="math inline">\(T_3(x)\)</span> has the smallest error on the right side of the interval, and <span class="math inline">\(L_3(x)\)</span> has a relatively small error across the entire interval. This supports our earlier prediction that <span class="math inline">\(L_3(x)\)</span> would be the best overall estimator of <span class="math inline">\(f(x)\)</span> over <span class="math inline">\([0, 2]\)</span>.</p>
 <p>We can also plot each error against its respective error bound to verify that the errors are within the bounds we calculated earlier.</p>
-<div id="47d3ae7b" class="cell" data-execution_count="10">
+<div id="f612de18" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the error bounds for each polynomial</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>M3_bound <span class="op">=</span> sp.Abs(sp.exp(<span class="dv">2</span>)<span class="op">*</span>(x)<span class="op">**</span><span class="dv">4</span><span class="op">/</span><span class="dv">24</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>T3_bound <span class="op">=</span> sp.Abs(sp.exp(<span class="dv">2</span>)<span class="op">*</span>(x<span class="op">-</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">4</span><span class="op">/</span><span class="dv">24</span>)</span>
@@ -696,7 +696,7 @@ Apart from <span class="math inline">\(x\)</span>, the term that will bound <spa
 <p>For this challenge, our goal will be to find the smallest degree Taylor Polynomial with a worst case error less than <span class="math inline">\(\approx 0.050\)</span>, <span class="math inline">\(L_3(x)\)</span>’s worst case error. We anchor this polynomial at <span class="math inline">\(x=0\)</span>, since <span class="math inline">\(M_3(x)\)</span> is the better-performing of the two Taylor Polynomials on <span class="math inline">\([0,2]\)</span>. This also means that this new polynomial, <span class="math inline">\(P_n(x)\)</span>, will have its worst case error at <span class="math inline">\(x=2\)</span>, like <span class="math inline">\(M_3(x)\)</span>. For an <span class="math inline">\(n\)</span>th degree Taylor Polynomial the error bound is <span class="math inline">\(|R_n(x)| \le \frac{f^{n+1}(\xi_x)(x)^{n+1}}{(n+1)!}\)</span>. In our case, <span class="math inline">\(f^{n+1}(\xi_x) = e^{\xi_x} \le e^2\)</span> for <span class="math inline">\(\xi_x \in [0,2]\)</span>. We want to find the smallest <span class="math inline">\(n\)</span> such that this error bound is less than the worst-case error of <span class="math inline">\(L_3(x)\)</span>, which we found to be <span class="math inline">\(\approx 0.050\)</span> at <span class="math inline">\(x \approx 0.34\)</span>. So we want to solve for <span class="math inline">\(n\)</span> in the inequality:</p>
 <p><span class="math inline">\(\frac{e^{2}(2)^{n+1}}{(n+1)!} &lt; 0.050\)</span></p>
 <p>For our purposes, an iterative solve will be sufficient. We will start with <span class="math inline">\(n=3\)</span> and increment <span class="math inline">\(n\)</span> until we find the smallest degree that satisfies the inequality.</p>
-<div id="4325320e" class="cell" data-execution_count="11">
+<div id="2e63fd97" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the left side of the inequality as a function of n</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> sp.symbols(<span class="st">"n"</span>, integer<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>error_bound_expr <span class="op">=</span> (sp.exp(<span class="dv">2</span>)<span class="op">*</span>(<span class="dv">2</span>)<span class="op">**</span>(n<span class="op">+</span><span class="dv">1</span>))<span class="op">/</span>sp.factorial(n<span class="op">+</span><span class="dv">1</span>)</span>
